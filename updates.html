@@ -7,7 +7,7 @@
   <meta name="description" content="Research notes, infrastructure logs, and dispatches from Ankur Dahiya." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -17,174 +17,169 @@
           fontFamily: {
             serif: ['"Source Serif 4"', 'Georgia', 'serif'],
             sans: ['Inter', 'system-ui', 'sans-serif'],
-            mono: ['"JetBrains Mono"', 'monospace'],
           },
           colors: {
-            page: { light: '#faf9f6', dark: '#151518' },
-            surface: { light: '#f0efeb', dark: '#1c1c21' },
+            page: { light: '#faf9f6', dark: '#141417' },
           },
         },
       },
     };
   </script>
   <style>
-    ::selection { background: #2563eb33; }
-    .dark ::selection { background: #60a5fa33; }
-    a.link { color: #1d4ed8; text-decoration: none; border-bottom: 1px solid #1d4ed833; transition: border-color 0.2s; }
-    a.link:hover { border-color: #1d4ed8; }
-    .dark a.link { color: #93b4f4; border-bottom-color: #93b4f433; }
-    .dark a.link:hover { border-color: #93b4f4; }
-    .nav-active { border-bottom: 2px solid #1d4ed8; padding-bottom: 2px; }
-    .dark .nav-active { border-bottom-color: #93b4f4; }
-    .reveal { opacity: 0; transform: translateY(8px); animation: reveal 0.5s ease forwards; }
+    ::selection { background: #c8a96433; }
+    .dark ::selection { background: #c8a96433; }
+
+    a.link { color: #1a5fb4; text-decoration: none; }
+    a.link:hover { text-decoration: underline; }
+    .dark a.link { color: #8cb4f0; }
+
+    /* Nav pill */
+    .nav-pill { transition: all 0.2s; }
+    .nav-pill:hover { background: #00000008; }
+    .dark .nav-pill:hover { background: #ffffff08; }
+    .nav-pill.active { background: #1a1a1a; color: #fff; }
+    .dark .nav-pill.active { background: #e5e5e5; color: #141417; }
+
+    .reveal { opacity: 0; transform: translateY(10px); animation: reveal 0.6s ease forwards; }
     @keyframes reveal { to { opacity: 1; transform: none; } }
-    .reveal-d1 { animation-delay: 0.1s; }
-    .reveal-d2 { animation-delay: 0.2s; }
-    .reveal-d3 { animation-delay: 0.3s; }
-    .reveal-d4 { animation-delay: 0.4s; }
+    .d1 { animation-delay: 0.1s; }
+    .d2 { animation-delay: 0.2s; }
+    .d3 { animation-delay: 0.3s; }
+    .d4 { animation-delay: 0.4s; }
 
-    .post-link { transition: color 0.15s; }
-    .post-link:hover { color: #1d4ed8; }
-    .dark .post-link:hover { color: #93b4f4; }
-
-    .log-row:hover { background: #f0efeb; }
-    .dark .log-row:hover { background: #1c1c21; }
+    .post-title { transition: color 0.2s; }
+    .post-title:hover { color: #1a5fb4; }
+    .dark .post-title:hover { color: #8cb4f0; }
   </style>
 </head>
 <body class="bg-page-light dark:bg-page-dark text-zinc-800 dark:text-zinc-300 transition-colors duration-200">
 
-  <!-- Nav -->
-  <nav class="max-w-3xl mx-auto px-6 pt-8 pb-4 flex items-center justify-between text-sm font-sans">
-    <div class="flex items-center gap-6">
-      <a href="index.html" class="text-zinc-500 dark:text-zinc-400 hover:text-zinc-800 dark:hover:text-zinc-200 transition-colors">about</a>
-      <a href="research.html" class="text-zinc-500 dark:text-zinc-400 hover:text-zinc-800 dark:hover:text-zinc-200 transition-colors">publications</a>
-      <a href="updates.html" class="nav-active font-semibold text-zinc-900 dark:text-white">blog</a>
+  <!-- ===== NAV ===== -->
+  <nav class="w-full px-8 md:px-14 lg:px-20 pt-7 pb-5 flex items-center justify-between">
+    <a href="index.html" class="font-serif text-xl font-bold text-zinc-900 dark:text-white tracking-tight">Ankur Dahiya</a>
+    <div class="flex items-center gap-2">
+      <a href="index.html" class="nav-pill rounded-full px-4 py-1.5 text-sm font-sans font-medium text-zinc-600 dark:text-zinc-400">Home</a>
+      <a href="research.html" class="nav-pill rounded-full px-4 py-1.5 text-sm font-sans font-medium text-zinc-600 dark:text-zinc-400">Publications</a>
+      <a href="updates.html" class="nav-pill active rounded-full px-4 py-1.5 text-sm font-sans font-medium">Blog</a>
+      <div class="w-px h-5 bg-zinc-200 dark:bg-zinc-700 mx-2"></div>
+      <button id="theme-toggle" class="nav-pill rounded-full p-2 text-zinc-500 dark:text-zinc-400" aria-label="Toggle theme">
+        <svg id="moon-icon" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+        <svg id="sun-icon" class="w-4 h-4 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+      </button>
     </div>
-    <button id="theme-toggle" class="text-zinc-400 dark:text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors" aria-label="Toggle theme">
-      <svg id="moon-icon" class="w-[18px] h-[18px]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
-      <svg id="sun-icon" class="w-[18px] h-[18px] hidden" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
-    </button>
   </nav>
 
-  <hr class="max-w-3xl mx-auto border-zinc-200 dark:border-zinc-800 mx-6" />
+  <main class="px-8 md:px-14 lg:px-20 py-10 max-w-5xl">
 
-  <main class="max-w-3xl mx-auto px-6 py-10">
-
-    <h1 class="reveal font-serif text-3xl font-bold text-zinc-900 dark:text-white mb-2 tracking-tight">Blog</h1>
-    <p class="reveal reveal-d1 text-sm text-zinc-500 dark:text-zinc-400 mb-12 max-w-lg">
+    <h1 class="reveal font-serif text-4xl md:text-5xl font-bold text-zinc-900 dark:text-white mb-4 tracking-tight">Blog</h1>
+    <p class="reveal d1 font-sans text-base text-zinc-500 dark:text-zinc-400 mb-16 max-w-2xl">
       Research notes, engineering logs, reading group takeaways, and the occasional reflection.
     </p>
 
     <!-- ===== POSTS ===== -->
-    <section class="reveal reveal-d1 mb-16">
-      <h2 class="font-sans text-xs tracking-widest uppercase text-zinc-400 dark:text-zinc-500 font-medium mb-6">Posts</h2>
+    <section class="reveal d2 mb-20 max-w-4xl">
+      <h2 class="font-sans text-sm tracking-widest uppercase text-zinc-400 dark:text-zinc-500 font-medium mb-10">Posts</h2>
 
-      <div class="space-y-8">
+      <div class="space-y-14">
         <!-- Post 1 -->
-        <article>
-          <time class="font-mono text-xs text-zinc-400 dark:text-zinc-500">June 2, 2026</time>
-          <h3 class="font-serif text-lg font-bold text-zinc-900 dark:text-zinc-100 leading-snug mt-1 mb-2 post-link cursor-pointer">
+        <article class="cursor-pointer group">
+          <time class="font-sans text-sm text-zinc-400 dark:text-zinc-500 mb-2 block font-medium">June 2, 2026</time>
+          <h3 class="font-serif text-2xl font-bold text-zinc-900 dark:text-zinc-100 leading-snug mb-3 post-title">
             Why Critique Signals Beat Scalar Rewards for Tree Search
           </h3>
-          <p class="font-serif text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed mb-2">
+          <p class="font-serif text-lg text-zinc-700 dark:text-zinc-300 leading-relaxed mb-4">
             Reflections on the core insight behind CATPO — why structured natural language critiques at each tree node provide fundamentally better optimization gradients than scalar reward signals from the leaf. Drawing parallels to how humans debug code: we don't just rate the output, we reason about intermediate steps. The key insight is that critique signals decompose a holistic judgment into localized, actionable feedback that the search tree can use to prune early…
           </p>
-          <span class="text-xs text-zinc-400 dark:text-zinc-500 font-sans italic">research · rl · alignment</span>
+          <span class="font-sans text-sm text-zinc-400 dark:text-zinc-500">research · rl · alignment</span>
         </article>
-
-        <hr class="border-zinc-200 dark:border-zinc-800" />
 
         <!-- Post 2 -->
-        <article>
-          <time class="font-mono text-xs text-zinc-400 dark:text-zinc-500">May 28, 2026</time>
-          <h3 class="font-serif text-lg font-bold text-zinc-900 dark:text-zinc-100 leading-snug mt-1 mb-2 post-link cursor-pointer">
+        <article class="cursor-pointer group">
+          <time class="font-sans text-sm text-zinc-400 dark:text-zinc-500 mb-2 block font-medium">May 28, 2026</time>
+          <h3 class="font-serif text-2xl font-bold text-zinc-900 dark:text-zinc-100 leading-snug mb-3 post-title">
             Lessons From Optimizing Multi-Node Training Pipelines
           </h3>
-          <p class="font-serif text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed mb-2">
+          <p class="font-serif text-lg text-zinc-700 dark:text-zinc-300 leading-relaxed mb-4">
             How we reduced wall-clock time per epoch by 23% on our shared GPU cluster. This post covers the unglamorous but important stuff: gradient accumulation tuning, mixed-precision scheduling quirks, DataLoader bottlenecks, and why your training is secretly I/O bound. Includes actual profiler screenshots and the specific changes that made the difference on 4× A100 nodes…
           </p>
-          <span class="text-xs text-zinc-400 dark:text-zinc-500 font-sans italic">infrastructure · gpu · systems</span>
+          <span class="font-sans text-sm text-zinc-400 dark:text-zinc-500">infrastructure · gpu · systems</span>
         </article>
-
-        <hr class="border-zinc-200 dark:border-zinc-800" />
 
         <!-- Post 3 -->
-        <article>
-          <time class="font-mono text-xs text-zinc-400 dark:text-zinc-500">May 15, 2026</time>
-          <h3 class="font-serif text-lg font-bold text-zinc-900 dark:text-zinc-100 leading-snug mt-1 mb-2 post-link cursor-pointer">
+        <article class="cursor-pointer group">
+          <time class="font-sans text-sm text-zinc-400 dark:text-zinc-500 mb-2 block font-medium">May 15, 2026</time>
+          <h3 class="font-serif text-2xl font-bold text-zinc-900 dark:text-zinc-100 leading-snug mb-3 post-title">
             VLG Reading Group: Scaling Laws for Pruned Subnetworks
           </h3>
-          <p class="font-serif text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed mb-2">
+          <p class="font-serif text-lg text-zinc-700 dark:text-zinc-300 leading-relaxed mb-4">
             Notes from our VLG internal presentation on how Chinchilla-style scaling laws interact with evolutionary pruning. If you plan to prune a model to 50% sparsity, should you train a larger model with less data, or a smaller model with more data? Our preliminary findings suggest the optimal compute allocation shifts meaningfully…
           </p>
-          <span class="text-xs text-zinc-400 dark:text-zinc-500 font-sans italic">reading group · scaling · pruning</span>
+          <span class="font-sans text-sm text-zinc-400 dark:text-zinc-500">reading group · scaling · pruning</span>
         </article>
 
-        <hr class="border-zinc-200 dark:border-zinc-800" />
-
         <!-- Post 4 -->
-        <article>
-          <time class="font-mono text-xs text-zinc-400 dark:text-zinc-500">March 20, 2026</time>
-          <h3 class="font-serif text-lg font-bold text-zinc-900 dark:text-zinc-100 leading-snug mt-1 mb-2 post-link cursor-pointer">
+        <article class="cursor-pointer group">
+          <time class="font-sans text-sm text-zinc-400 dark:text-zinc-500 mb-2 block font-medium">March 20, 2026</time>
+          <h3 class="font-serif text-2xl font-bold text-zinc-900 dark:text-zinc-100 leading-snug mb-3 post-title">
             Hunting for IOI Circuits in Small Transformers
           </h3>
-          <p class="font-serif text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed mb-2">
+          <p class="font-serif text-lg text-zinc-700 dark:text-zinc-300 leading-relaxed mb-4">
             Replicating Anthropic's indirect object identification circuit discovery on GPT-2 Small and Pythia 410M. What survives across model families, what doesn't, and what that tells us about the universality of learned circuits. Spoiler: the induction heads are remarkably stable, but the backup name-movers are not…
           </p>
-          <span class="text-xs text-zinc-400 dark:text-zinc-500 font-sans italic">interpretability · circuits · transformers</span>
+          <span class="font-sans text-sm text-zinc-400 dark:text-zinc-500">interpretability · circuits · transformers</span>
         </article>
       </div>
     </section>
 
     <!-- ===== DISPATCH LOG ===== -->
-    <section class="reveal reveal-d3 mb-8">
-      <h2 class="font-sans text-xs tracking-widest uppercase text-zinc-400 dark:text-zinc-500 font-medium mb-6">Dispatch Log</h2>
-      <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-6">Short-form updates — what I shipped, read, presented, or learned.</p>
+    <section class="reveal d3 mb-20 max-w-4xl">
+      <h2 class="font-sans text-sm tracking-widest uppercase text-zinc-400 dark:text-zinc-500 font-medium mb-10">Dispatch Log</h2>
+      <p class="font-sans text-base text-zinc-500 dark:text-zinc-400 mb-10">Short-form updates — what I shipped, read, presented, or learned.</p>
 
-      <div class="divide-y divide-zinc-200 dark:divide-zinc-800 border-t border-b border-zinc-200 dark:border-zinc-800">
-        <div class="log-row flex gap-4 py-3 px-2 transition-colors">
-          <span class="font-mono text-xs text-zinc-400 dark:text-zinc-500 w-28 flex-shrink-0 pt-0.5">Jun 2, 2026</span>
-          <p class="text-sm text-zinc-700 dark:text-zinc-300">Submitted <strong class="text-zinc-900 dark:text-zinc-100">CATPO</strong> to COLM 2026.</p>
+      <div class="space-y-4">
+        <div class="flex gap-5">
+          <span class="font-sans text-sm text-zinc-400 dark:text-zinc-500 w-28 flex-shrink-0 pt-0.5 font-medium">Jun 2, 2026</span>
+          <p class="font-serif text-lg text-zinc-700 dark:text-zinc-300">Submitted <strong class="text-zinc-900 dark:text-zinc-100">CATPO</strong> to COLM 2026.</p>
         </div>
-        <div class="log-row flex gap-4 py-3 px-2 transition-colors">
-          <span class="font-mono text-xs text-zinc-400 dark:text-zinc-500 w-28 flex-shrink-0 pt-0.5">Jun 1, 2026</span>
-          <p class="text-sm text-zinc-700 dark:text-zinc-300">Pipeline optimization pass complete — 23% wall-clock reduction on multi-node cluster.</p>
+        <div class="flex gap-5">
+          <span class="font-sans text-sm text-zinc-400 dark:text-zinc-500 w-28 flex-shrink-0 pt-0.5 font-medium">Jun 1, 2026</span>
+          <p class="font-serif text-lg text-zinc-700 dark:text-zinc-300">Pipeline optimization pass complete — 23% wall-clock reduction on multi-node cluster.</p>
         </div>
-        <div class="log-row flex gap-4 py-3 px-2 transition-colors">
-          <span class="font-mono text-xs text-zinc-400 dark:text-zinc-500 w-28 flex-shrink-0 pt-0.5">Jun 1, 2026</span>
-          <p class="text-sm text-zinc-700 dark:text-zinc-300">Deployed automated GPU health-check scripts across VLG compute pool.</p>
+        <div class="flex gap-5">
+          <span class="font-sans text-sm text-zinc-400 dark:text-zinc-500 w-28 flex-shrink-0 pt-0.5 font-medium">Jun 1, 2026</span>
+          <p class="font-serif text-lg text-zinc-700 dark:text-zinc-300">Deployed automated GPU health-check scripts across VLG compute pool.</p>
         </div>
-        <div class="log-row flex gap-4 py-3 px-2 transition-colors">
-          <span class="font-mono text-xs text-zinc-400 dark:text-zinc-500 w-28 flex-shrink-0 pt-0.5">May 22, 2026</span>
-          <p class="text-sm text-zinc-700 dark:text-zinc-300">Presented evolutionary pruning framework at VLG reading group.</p>
+        <div class="flex gap-5">
+          <span class="font-sans text-sm text-zinc-400 dark:text-zinc-500 w-28 flex-shrink-0 pt-0.5 font-medium">May 22, 2026</span>
+          <p class="font-serif text-lg text-zinc-700 dark:text-zinc-300">Presented evolutionary pruning framework at VLG reading group.</p>
         </div>
-        <div class="log-row flex gap-4 py-3 px-2 transition-colors">
-          <span class="font-mono text-xs text-zinc-400 dark:text-zinc-500 w-28 flex-shrink-0 pt-0.5">May 10, 2026</span>
-          <p class="text-sm text-zinc-700 dark:text-zinc-300">CATPO shows 12-point win-rate improvement vs. DPO with 40% fewer rollouts.</p>
+        <div class="flex gap-5">
+          <span class="font-sans text-sm text-zinc-400 dark:text-zinc-500 w-28 flex-shrink-0 pt-0.5 font-medium">May 10, 2026</span>
+          <p class="font-serif text-lg text-zinc-700 dark:text-zinc-300">CATPO shows 12-point win-rate improvement vs. DPO with 40% fewer rollouts.</p>
         </div>
-        <div class="log-row flex gap-4 py-3 px-2 transition-colors">
-          <span class="font-mono text-xs text-zinc-400 dark:text-zinc-500 w-28 flex-shrink-0 pt-0.5">Apr 15, 2026</span>
-          <p class="text-sm text-zinc-700 dark:text-zinc-300"><strong class="text-zinc-900 dark:text-zinc-100">"Natural Selection of LLMs via Pruning"</strong> accepted at AAAI 2026 Student Abstract.</p>
+        <div class="flex gap-5">
+          <span class="font-sans text-sm text-zinc-400 dark:text-zinc-500 w-28 flex-shrink-0 pt-0.5 font-medium">Apr 15, 2026</span>
+          <p class="font-serif text-lg text-zinc-700 dark:text-zinc-300"><strong class="text-zinc-900 dark:text-zinc-100">"Natural Selection of LLMs via Pruning"</strong> accepted at AAAI 2026 Student Abstract.</p>
         </div>
-        <div class="log-row flex gap-4 py-3 px-2 transition-colors">
-          <span class="font-mono text-xs text-zinc-400 dark:text-zinc-500 w-28 flex-shrink-0 pt-0.5">Apr 5, 2026</span>
-          <p class="text-sm text-zinc-700 dark:text-zinc-300">Finalized CATPO prototype — evaluation pipeline + AlpacaEval-2 benchmarks wired up.</p>
+        <div class="flex gap-5">
+          <span class="font-sans text-sm text-zinc-400 dark:text-zinc-500 w-28 flex-shrink-0 pt-0.5 font-medium">Apr 5, 2026</span>
+          <p class="font-serif text-lg text-zinc-700 dark:text-zinc-300">Finalized CATPO prototype — evaluation pipeline + AlpacaEval-2 benchmarks wired up.</p>
         </div>
-        <div class="log-row flex gap-4 py-3 px-2 transition-colors">
-          <span class="font-mono text-xs text-zinc-400 dark:text-zinc-500 w-28 flex-shrink-0 pt-0.5">Mar 18, 2026</span>
-          <p class="text-sm text-zinc-700 dark:text-zinc-300">Started mech interp experiments — IOI circuit analysis on GPT-2 Small &amp; Pythia 410M.</p>
+        <div class="flex gap-5">
+          <span class="font-sans text-sm text-zinc-400 dark:text-zinc-500 w-28 flex-shrink-0 pt-0.5 font-medium">Mar 18, 2026</span>
+          <p class="font-serif text-lg text-zinc-700 dark:text-zinc-300">Started mech interp experiments — IOI circuit analysis on GPT-2 Small &amp; Pythia 410M.</p>
         </div>
-        <div class="log-row flex gap-4 py-3 px-2 transition-colors">
-          <span class="font-mono text-xs text-zinc-400 dark:text-zinc-500 w-28 flex-shrink-0 pt-0.5">Mar 5, 2026</span>
-          <p class="text-sm text-zinc-700 dark:text-zinc-300">Set up TransformerLens + nnsight for activation patching experiments.</p>
+        <div class="flex gap-5">
+          <span class="font-sans text-sm text-zinc-400 dark:text-zinc-500 w-28 flex-shrink-0 pt-0.5 font-medium">Mar 5, 2026</span>
+          <p class="font-serif text-lg text-zinc-700 dark:text-zinc-300">Set up TransformerLens + nnsight for activation patching experiments.</p>
         </div>
-        <div class="log-row flex gap-4 py-3 px-2 transition-colors">
-          <span class="font-mono text-xs text-zinc-400 dark:text-zinc-500 w-28 flex-shrink-0 pt-0.5">Feb 12, 2026</span>
-          <p class="text-sm text-zinc-700 dark:text-zinc-300">Joined <a href="https://vlgiitr.github.io/" target="_blank" rel="noopener" class="link">VLG</a> at IIT Roorkee as a core research member.</p>
+        <div class="flex gap-5">
+          <span class="font-sans text-sm text-zinc-400 dark:text-zinc-500 w-28 flex-shrink-0 pt-0.5 font-medium">Feb 12, 2026</span>
+          <p class="font-serif text-lg text-zinc-700 dark:text-zinc-300">Joined <a href="https://vlgiitr.github.io/" target="_blank" rel="noopener" class="link">VLG</a> at IIT Roorkee as a core research member.</p>
         </div>
-        <div class="log-row flex gap-4 py-3 px-2 transition-colors">
-          <span class="font-mono text-xs text-zinc-400 dark:text-zinc-500 w-28 flex-shrink-0 pt-0.5">Jan 8, 2026</span>
-          <p class="text-sm text-zinc-700 dark:text-zinc-300">Started B.Tech in Data Science &amp; AI at IIT Roorkee.</p>
+        <div class="flex gap-5">
+          <span class="font-sans text-sm text-zinc-400 dark:text-zinc-500 w-28 flex-shrink-0 pt-0.5 font-medium">Jan 8, 2026</span>
+          <p class="font-serif text-lg text-zinc-700 dark:text-zinc-300">Started B.Tech in Data Science &amp; AI at IIT Roorkee.</p>
         </div>
       </div>
     </section>
@@ -192,9 +187,9 @@
   </main>
 
   <!-- Footer -->
-  <footer class="max-w-3xl mx-auto px-6 py-8 border-t border-zinc-200 dark:border-zinc-800">
-    <p class="text-xs text-zinc-400 dark:text-zinc-600">
-      &copy; 2026 Ankur Dahiya · <a href="index.html" class="hover:text-zinc-600 dark:hover:text-zinc-400 transition-colors">home</a>
+  <footer class="px-8 md:px-14 lg:px-20 py-10 border-t border-zinc-200/60 dark:border-zinc-800/40">
+    <p class="text-sm text-zinc-400 dark:text-zinc-600 font-sans">
+      &copy; 2026 Ankur Dahiya
     </p>
   </footer>
 

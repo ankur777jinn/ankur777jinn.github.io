@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ankur Dahiya — Researcher</title>
-  <meta name="description" content="Ankur Dahiya — Undergraduate researcher at IIT Roorkee working on Mechanistic Interpretability, RL Alignment, Model Pruning, and Compute Infrastructure." />
+  <title>Ankur Dahiya</title>
+  <meta name="description" content="Ankur Dahiya — Undergraduate researcher at IIT Roorkee. Mechanistic Interpretability, RL Alignment, Model Pruning." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -15,530 +15,237 @@
       theme: {
         extend: {
           fontFamily: {
+            serif: ['"Source Serif 4"', 'Georgia', 'serif'],
             sans: ['Inter', 'system-ui', 'sans-serif'],
-            mono: ['JetBrains Mono', 'monospace'],
+            mono: ['"JetBrains Mono"', 'monospace'],
           },
           colors: {
-            cream: '#FAFAF7',
-            ivory: '#F5F5F0',
-            warmgray: '#E8E6E1',
-            zinc: {
-              850: '#1f1f23',
-              950: '#0c0c0e',
-            },
-            accent: {
-              DEFAULT: '#2563eb',
-              light: '#3b82f6',
-              dark: '#60a5fa',
-              subtle: '#dbeafe',
-            },
+            page: { light: '#faf9f6', dark: '#151518' },
+            surface: { light: '#f0efeb', dark: '#1c1c21' },
           },
         },
       },
     };
   </script>
   <style>
-    * { scrollbar-width: thin; scrollbar-color: #a1a1aa transparent; }
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: transparent; }
-    ::-webkit-scrollbar-thumb { background: #a1a1aa; border-radius: 3px; }
-    .dark ::-webkit-scrollbar-thumb { background: #52525b; }
-    
-    body { font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11'; }
-    
-    .news-scroll { max-height: 420px; overflow-y: auto; }
-    
-    .fade-in { animation: fadeIn 0.6s ease-out forwards; opacity: 0; }
-    .fade-in-up { animation: fadeInUp 0.6s ease-out forwards; opacity: 0; }
-    @keyframes fadeIn { to { opacity: 1; } }
-    @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } from { transform: translateY(16px); } }
-    
-    .stagger-1 { animation-delay: 0.1s; }
-    .stagger-2 { animation-delay: 0.2s; }
-    .stagger-3 { animation-delay: 0.3s; }
-    .stagger-4 { animation-delay: 0.4s; }
-    .stagger-5 { animation-delay: 0.5s; }
-    .stagger-6 { animation-delay: 0.6s; }
-    
-    .nav-link {
-      position: relative;
-      transition: color 0.2s;
-    }
-    .nav-link::after {
-      content: '';
-      position: absolute;
-      bottom: -2px;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: #2563eb;
-      transition: width 0.3s ease;
-    }
-    .dark .nav-link::after { background: #60a5fa; }
-    .nav-link:hover::after,
-    .nav-link.active::after { width: 100%; }
-    .nav-link.active { font-weight: 600; }
-    
-    .profile-ring {
-      background: conic-gradient(from 0deg, #2563eb, #7c3aed, #ec4899, #f59e0b, #2563eb);
-      padding: 3px;
-      border-radius: 9999px;
-    }
-    .dark .profile-ring {
-      background: conic-gradient(from 0deg, #60a5fa, #a78bfa, #f472b6, #fbbf24, #60a5fa);
-    }
-    
-    .tag {
-      display: inline-block;
-      padding: 2px 10px;
-      border-radius: 9999px;
-      font-size: 0.7rem;
-      font-weight: 500;
-      letter-spacing: 0.03em;
-      text-transform: uppercase;
-    }
-    
-    .section-line {
-      width: 40px;
-      height: 3px;
-      border-radius: 2px;
-      background: #2563eb;
-    }
-    .dark .section-line { background: #60a5fa; }
+    ::selection { background: #2563eb33; }
+    .dark ::selection { background: #60a5fa33; }
 
-    .news-item {
-      position: relative;
-      padding-left: 20px;
-    }
-    .news-item::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 8px;
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: #2563eb;
-    }
-    .dark .news-item::before { background: #60a5fa; }
-    .news-item::after {
-      content: '';
-      position: absolute;
-      left: 3.5px;
-      top: 20px;
-      width: 1px;
-      height: calc(100% - 12px);
-      background: #d4d4d8;
-    }
-    .dark .news-item::after { background: #3f3f46; }
-    .news-item:last-child::after { display: none; }
+    a.link { color: #1d4ed8; text-decoration: none; border-bottom: 1px solid #1d4ed833; transition: border-color 0.2s; }
+    a.link:hover { border-color: #1d4ed8; }
+    .dark a.link { color: #93b4f4; border-bottom-color: #93b4f433; }
+    .dark a.link:hover { border-color: #93b4f4; }
 
-    .card {
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-    .card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 30px rgba(0,0,0,0.08);
-    }
-    .dark .card:hover {
-      box-shadow: 0 8px 30px rgba(0,0,0,0.3);
-    }
+    .nav-active { border-bottom: 2px solid #1d4ed8; padding-bottom: 2px; }
+    .dark .nav-active { border-bottom-color: #93b4f4; }
 
-    .icon-btn {
-      transition: transform 0.2s, color 0.2s;
-    }
-    .icon-btn:hover {
-      transform: scale(1.15);
-    }
+    .news-row:hover { background: #f0efeb; }
+    .dark .news-row:hover { background: #1c1c21; }
+
+    /* Simple fade on load */
+    .reveal { opacity: 0; transform: translateY(8px); animation: reveal 0.5s ease forwards; }
+    @keyframes reveal { to { opacity: 1; transform: none; } }
+    .reveal-d1 { animation-delay: 0.05s; }
+    .reveal-d2 { animation-delay: 0.15s; }
+    .reveal-d3 { animation-delay: 0.25s; }
+    .reveal-d4 { animation-delay: 0.35s; }
+    .reveal-d5 { animation-delay: 0.45s; }
   </style>
 </head>
-<body class="bg-cream dark:bg-zinc-950 text-zinc-800 dark:text-zinc-200 font-sans antialiased transition-colors duration-300">
+<body class="bg-page-light dark:bg-page-dark text-zinc-800 dark:text-zinc-300 transition-colors duration-200">
 
-  <!-- ========== NAVIGATION ========== -->
-  <nav class="fixed top-0 left-0 right-0 z-50 bg-cream/80 dark:bg-zinc-950/80 backdrop-blur-xl border-b border-zinc-200/60 dark:border-zinc-800/60">
-    <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
-      <a href="index.html" class="text-lg font-bold tracking-tight text-zinc-900 dark:text-white hover:text-accent dark:hover:text-accent-dark transition-colors">
-        AD<span class="text-accent dark:text-accent-dark">.</span>
-      </a>
-      <div class="flex items-center gap-8">
-        <div class="hidden sm:flex items-center gap-6 text-sm">
-          <a href="index.html" class="nav-link active text-zinc-900 dark:text-white">Home</a>
-          <a href="research.html" class="nav-link text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white">Research</a>
-          <a href="updates.html" class="nav-link text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white">Blog</a>
-        </div>
-        <!-- Dark mode toggle -->
-        <button id="theme-toggle" class="p-2 rounded-lg bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors" aria-label="Toggle dark mode">
-          <svg id="sun-icon" class="w-5 h-5 text-amber-500 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-          </svg>
-          <svg id="moon-icon" class="w-5 h-5 text-zinc-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-          </svg>
-        </button>
-        <!-- Mobile menu button -->
-        <button id="mobile-menu-btn" class="sm:hidden p-2 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors" aria-label="Menu">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
-        </button>
-      </div>
+  <!-- Nav -->
+  <nav class="max-w-3xl mx-auto px-6 pt-8 pb-4 flex items-center justify-between text-sm font-sans">
+    <div class="flex items-center gap-6">
+      <a href="index.html" class="nav-active font-semibold text-zinc-900 dark:text-white">about</a>
+      <a href="research.html" class="text-zinc-500 dark:text-zinc-400 hover:text-zinc-800 dark:hover:text-zinc-200 transition-colors">publications</a>
+      <a href="updates.html" class="text-zinc-500 dark:text-zinc-400 hover:text-zinc-800 dark:hover:text-zinc-200 transition-colors">blog</a>
     </div>
-    <!-- Mobile menu -->
-    <div id="mobile-menu" class="hidden sm:hidden border-t border-zinc-200/60 dark:border-zinc-800/60 bg-cream/95 dark:bg-zinc-950/95 backdrop-blur-xl">
-      <div class="px-6 py-4 flex flex-col gap-3 text-sm">
-        <a href="index.html" class="font-semibold text-zinc-900 dark:text-white">Home</a>
-        <a href="research.html" class="text-zinc-600 dark:text-zinc-400">Research</a>
-        <a href="updates.html" class="text-zinc-600 dark:text-zinc-400">Blog</a>
-      </div>
-    </div>
+    <button id="theme-toggle" class="text-zinc-400 dark:text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors" aria-label="Toggle theme">
+      <svg id="moon-icon" class="w-[18px] h-[18px]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+      <svg id="sun-icon" class="w-[18px] h-[18px] hidden" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+    </button>
   </nav>
 
-  <!-- ========== HERO / ABOUT ========== -->
-  <main class="max-w-5xl mx-auto px-6 pt-28 pb-20">
-    <section id="about" class="mb-20">
-      <div class="flex flex-col md:flex-row gap-10 items-start">
-        <!-- Profile Image -->
-        <div class="fade-in stagger-1 flex-shrink-0">
-          <div class="profile-ring w-44 h-44 md:w-52 md:h-52">
-            <img src="profile.png" alt="Ankur Dahiya" class="w-full h-full rounded-full object-cover" />
-          </div>
-        </div>
-        <!-- Bio -->
-        <div class="flex-1 min-w-0">
-          <h1 class="fade-in-up stagger-1 text-4xl md:text-5xl font-extrabold tracking-tight text-zinc-900 dark:text-white mb-3">
-            Ankur Dahiya
-          </h1>
-          <p class="fade-in-up stagger-2 text-lg text-zinc-500 dark:text-zinc-400 mb-5 font-medium">
-            Undergraduate Researcher · IIT Roorkee
+  <hr class="max-w-3xl mx-auto border-zinc-200 dark:border-zinc-800 mx-6" />
+
+  <main class="max-w-3xl mx-auto px-6 py-10">
+
+    <!-- ===== HERO ===== -->
+    <section class="reveal flex flex-col-reverse md:flex-row gap-8 md:gap-12 items-start mb-16">
+      <!-- Text -->
+      <div class="flex-1 min-w-0">
+        <h1 class="font-serif text-[2.5rem] md:text-[3rem] font-bold leading-[1.1] text-zinc-900 dark:text-white mb-4 tracking-tight">
+          Ankur Dahiya
+        </h1>
+        <p class="font-sans text-xs tracking-widest uppercase text-zinc-400 dark:text-zinc-500 mb-6 font-medium">
+          AI Researcher &nbsp;·&nbsp; IIT Roorkee &nbsp;·&nbsp; India
+        </p>
+
+        <div class="font-serif text-[1.05rem] leading-[1.75] text-zinc-700 dark:text-zinc-300 space-y-4">
+          <p>
+            Hi, I'm Ankur. I'm an undergrad studying <strong class="text-zinc-900 dark:text-zinc-100">Data Science &amp; Artificial Intelligence</strong> at IIT Roorkee, and a core member of the <a href="https://vlgiitr.github.io/" target="_blank" rel="noopener" class="link">Vision and Language Group (VLG)</a>.
           </p>
-          <p class="fade-in-up stagger-3 text-[15px] leading-relaxed text-zinc-600 dark:text-zinc-300 mb-6 max-w-2xl">
-            I am an undergraduate student in <strong class="text-zinc-800 dark:text-zinc-100">Data Science &amp; Artificial Intelligence</strong> at the Indian Institute of Technology, Roorkee, and a core member of the <a href="https://vlgiitr.github.io/" target="_blank" rel="noopener" class="text-accent dark:text-accent-dark hover:underline font-semibold">Vision and Language Group (VLG)</a>. My research focuses on understanding and improving large-scale models through principled, mechanistic approaches—spanning interpretability, alignment, and efficient inference.
+          <p>
+            My research is about understanding how large models work internally and making them better aligned, more efficient, and more trustworthy. I'm particularly drawn to <strong class="text-zinc-900 dark:text-zinc-100">mechanistic interpretability</strong> — reverse-engineering the circuits and algorithms that neural networks learn — and to building <strong class="text-zinc-900 dark:text-zinc-100">RL alignment frameworks</strong> that go beyond scalar reward signals.
           </p>
-          <!-- Social Links -->
-          <div class="fade-in-up stagger-4 flex items-center gap-4">
-            <a href="mailto:ankurdahiya@example.com" class="icon-btn text-zinc-500 dark:text-zinc-400 hover:text-accent dark:hover:text-accent-dark" title="Email">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-            </a>
-            <a href="https://github.com/ankur777jinn" target="_blank" rel="noopener" class="icon-btn text-zinc-500 dark:text-zinc-400 hover:text-accent dark:hover:text-accent-dark" title="GitHub">
-              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-            </a>
-            <a href="https://scholar.google.com/" target="_blank" rel="noopener" class="icon-btn text-zinc-500 dark:text-zinc-400 hover:text-accent dark:hover:text-accent-dark" title="Google Scholar">
-              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/></svg>
-            </a>
-            <a href="https://x.com/" target="_blank" rel="noopener" class="icon-btn text-zinc-500 dark:text-zinc-400 hover:text-accent dark:hover:text-accent-dark" title="Twitter / X">
-              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-            </a>
-            <a href="https://linkedin.com/in/" target="_blank" rel="noopener" class="icon-btn text-zinc-500 dark:text-zinc-400 hover:text-accent dark:hover:text-accent-dark" title="LinkedIn">
-              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-            </a>
-          </div>
+          <p>
+            On the practical side, I care a lot about <strong class="text-zinc-900 dark:text-zinc-100">model pruning</strong> (we recently got a paper accepted at AAAI on evolutionary pruning of LLMs) and about the <strong class="text-zinc-900 dark:text-zinc-100">compute infrastructure</strong> that makes all this research possible — pipeline optimization, cluster health-checks, the stuff nobody talks about but everybody needs.
+          </p>
+          <p>
+            Outside of research, I like long walks, overthinking font choices, and occasionally submitting to the void that is academic peer review.
+          </p>
+          <p class="text-zinc-500 dark:text-zinc-400 text-[0.95rem]">
+            You can check out my <a href="research.html" class="link">publications</a>, read my <a href="updates.html" class="link">blog</a>, or grab my <a href="#" class="link">resume ↓</a>.
+          </p>
         </div>
+
+        <!-- Social icons -->
+        <div class="flex items-center gap-5 mt-8">
+          <a href="mailto:adahiya@ds.iitr.ac.in" class="text-zinc-400 dark:text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors" title="Email">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>
+          </a>
+          <a href="https://github.com/ankur777jinn" target="_blank" rel="noopener" class="text-zinc-400 dark:text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors" title="GitHub">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+          </a>
+          <a href="https://scholar.google.com/" target="_blank" rel="noopener" class="text-zinc-400 dark:text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors" title="Google Scholar">
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/></svg>
+          </a>
+          <a href="https://x.com/" target="_blank" rel="noopener" class="text-zinc-400 dark:text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors" title="Twitter / X">
+            <svg class="w-[18px] h-[18px]" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <a href="https://linkedin.com/in/" target="_blank" rel="noopener" class="text-zinc-400 dark:text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors" title="LinkedIn">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Photo -->
+      <div class="flex-shrink-0 w-56 md:w-64">
+        <img src="profile.jpg" alt="Ankur Dahiya" class="w-full rounded-lg shadow-md dark:shadow-zinc-900/50 object-cover" />
       </div>
     </section>
 
-    <!-- ========== RESEARCH INTERESTS ========== -->
-    <section id="interests" class="mb-20 fade-in-up stagger-3">
-      <div class="flex items-center gap-3 mb-6">
-        <div class="section-line"></div>
-        <h2 class="text-xl font-bold text-zinc-900 dark:text-white tracking-tight">Research Interests</h2>
-      </div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div class="card bg-white dark:bg-zinc-900 rounded-xl border border-zinc-200/80 dark:border-zinc-800 p-5">
-          <div class="flex items-center gap-3 mb-2">
-            <div class="w-9 h-9 rounded-lg bg-blue-50 dark:bg-blue-950/50 flex items-center justify-center">
-              <svg class="w-5 h-5 text-accent dark:text-accent-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
-            </div>
-            <h3 class="font-semibold text-zinc-900 dark:text-white text-sm">Mechanistic Interpretability</h3>
-          </div>
-          <p class="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">Reverse-engineering the computational structure of neural networks to understand learned algorithms and internal representations.</p>
+    <!-- ===== NEWS ===== -->
+    <section class="reveal reveal-d2 mb-16">
+      <h2 class="font-serif text-2xl font-bold text-zinc-900 dark:text-white mb-6">News</h2>
+      <div class="divide-y divide-zinc-200 dark:divide-zinc-800 border-t border-b border-zinc-200 dark:border-zinc-800">
+        <div class="news-row flex gap-4 py-3 px-2 transition-colors rounded-sm">
+          <span class="font-mono text-xs text-zinc-400 dark:text-zinc-500 w-24 flex-shrink-0 pt-0.5">Jun 2026</span>
+          <p class="text-sm text-zinc-700 dark:text-zinc-300">Submitted <strong class="text-zinc-900 dark:text-zinc-100">CATPO: Critique-Augmented Tree Policy Optimization</strong> to COLM 2026. Introduces critique-augmented tree search for RL alignment.</p>
         </div>
-        <div class="card bg-white dark:bg-zinc-900 rounded-xl border border-zinc-200/80 dark:border-zinc-800 p-5">
-          <div class="flex items-center gap-3 mb-2">
-            <div class="w-9 h-9 rounded-lg bg-violet-50 dark:bg-violet-950/50 flex items-center justify-center">
-              <svg class="w-5 h-5 text-violet-500 dark:text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-            </div>
-            <h3 class="font-semibold text-zinc-900 dark:text-white text-sm">RL Alignment Frameworks</h3>
-          </div>
-          <p class="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">Developing reinforcement learning methods that improve policy optimization with human feedback and critique-augmented training signals.</p>
+        <div class="news-row flex gap-4 py-3 px-2 transition-colors rounded-sm">
+          <span class="font-mono text-xs text-zinc-400 dark:text-zinc-500 w-24 flex-shrink-0 pt-0.5">Jun 2026</span>
+          <p class="text-sm text-zinc-700 dark:text-zinc-300">Optimized multi-node training pipeline — reduced epoch wall-clock time by 23% via gradient accumulation tuning and mixed-precision scheduling.</p>
         </div>
-        <div class="card bg-white dark:bg-zinc-900 rounded-xl border border-zinc-200/80 dark:border-zinc-800 p-5">
-          <div class="flex items-center gap-3 mb-2">
-            <div class="w-9 h-9 rounded-lg bg-rose-50 dark:bg-rose-950/50 flex items-center justify-center">
-              <svg class="w-5 h-5 text-rose-500 dark:text-rose-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.121 14.121L19 19m-7-7l7-7m-7 7l-2.879 2.879M12 12L9.121 9.121m0 5.758a3 3 0 10-4.243 4.243 3 3 0 004.243-4.243zm0-5.758a3 3 0 10-4.243-4.243 3 3 0 004.243 4.243z"/></svg>
-            </div>
-            <h3 class="font-semibold text-zinc-900 dark:text-white text-sm">Model Pruning</h3>
-          </div>
-          <p class="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">Designing structured and unstructured pruning strategies inspired by evolutionary selection to produce efficient, smaller models without sacrificing capability.</p>
+        <div class="news-row flex gap-4 py-3 px-2 transition-colors rounded-sm">
+          <span class="font-mono text-xs text-zinc-400 dark:text-zinc-500 w-24 flex-shrink-0 pt-0.5">Jun 2026</span>
+          <p class="text-sm text-zinc-700 dark:text-zinc-300">Deployed automated cluster validation scripts across the VLG compute pool for GPU health-checks.</p>
         </div>
-        <div class="card bg-white dark:bg-zinc-900 rounded-xl border border-zinc-200/80 dark:border-zinc-800 p-5">
-          <div class="flex items-center gap-3 mb-2">
-            <div class="w-9 h-9 rounded-lg bg-emerald-50 dark:bg-emerald-950/50 flex items-center justify-center">
-              <svg class="w-5 h-5 text-emerald-500 dark:text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"/></svg>
-            </div>
-            <h3 class="font-semibold text-zinc-900 dark:text-white text-sm">Compute Infrastructure</h3>
-          </div>
-          <p class="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">Optimizing training pipelines, multi-GPU cluster orchestration, and building reliable infrastructure for large-scale ML experiments.</p>
+        <div class="news-row flex gap-4 py-3 px-2 transition-colors rounded-sm">
+          <span class="font-mono text-xs text-zinc-400 dark:text-zinc-500 w-24 flex-shrink-0 pt-0.5">May 2026</span>
+          <p class="text-sm text-zinc-700 dark:text-zinc-300">Presented evolutionary pruning framework at VLG internal reading group — discussed scaling laws for pruned subnetworks.</p>
+        </div>
+        <div class="news-row flex gap-4 py-3 px-2 transition-colors rounded-sm">
+          <span class="font-mono text-xs text-zinc-400 dark:text-zinc-500 w-24 flex-shrink-0 pt-0.5">Apr 2026</span>
+          <p class="text-sm text-zinc-700 dark:text-zinc-300"><strong class="text-zinc-900 dark:text-zinc-100">"Natural Selection of LLMs via Pruning"</strong> accepted to the AAAI 2026 Student Abstract Track.</p>
+        </div>
+        <div class="news-row flex gap-4 py-3 px-2 transition-colors rounded-sm">
+          <span class="font-mono text-xs text-zinc-400 dark:text-zinc-500 w-24 flex-shrink-0 pt-0.5">Mar 2026</span>
+          <p class="text-sm text-zinc-700 dark:text-zinc-300">Started mechanistic interpretability experiments — replicating IOI circuit analysis on GPT-2 Small and Pythia 410M.</p>
+        </div>
+        <div class="news-row flex gap-4 py-3 px-2 transition-colors rounded-sm">
+          <span class="font-mono text-xs text-zinc-400 dark:text-zinc-500 w-24 flex-shrink-0 pt-0.5">Feb 2026</span>
+          <p class="text-sm text-zinc-700 dark:text-zinc-300">Joined the <a href="https://vlgiitr.github.io/" target="_blank" rel="noopener" class="link">Vision and Language Group (VLG)</a> at IIT Roorkee as a core research member.</p>
         </div>
       </div>
+      <a href="updates.html" class="inline-block mt-4 text-sm text-zinc-400 dark:text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors">
+        → full update log
+      </a>
     </section>
 
-    <!-- ========== PUBLICATIONS (PREVIEW) ========== -->
-    <section id="publications" class="mb-20 fade-in-up stagger-4">
-      <div class="flex items-center justify-between mb-6">
-        <div class="flex items-center gap-3">
-          <div class="section-line"></div>
-          <h2 class="text-xl font-bold text-zinc-900 dark:text-white tracking-tight">Selected Publications</h2>
-        </div>
-        <a href="research.html" class="text-xs font-medium text-accent dark:text-accent-dark hover:underline flex items-center gap-1">
-          View all
-          <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-        </a>
+    <!-- ===== SELECTED PUBLICATIONS ===== -->
+    <section class="reveal reveal-d3 mb-16">
+      <div class="flex items-baseline justify-between mb-6">
+        <h2 class="font-serif text-2xl font-bold text-zinc-900 dark:text-white">Selected Publications</h2>
+        <a href="research.html" class="text-sm text-zinc-400 dark:text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors">all →</a>
       </div>
-      <div class="space-y-4">
+      <div class="space-y-6">
         <!-- Paper 1 -->
-        <div class="card bg-white dark:bg-zinc-900 rounded-xl border border-zinc-200/80 dark:border-zinc-800 p-6">
-          <div class="flex items-start justify-between gap-4 mb-2">
-            <h3 class="font-semibold text-zinc-900 dark:text-white text-[15px] leading-snug">
-              CATPO: Critique-Augmented Tree Policy Optimization
-            </h3>
-            <span class="tag bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 flex-shrink-0">Under Review</span>
-          </div>
-          <p class="text-xs text-zinc-500 dark:text-zinc-400 mb-3">
-            <strong class="text-zinc-700 dark:text-zinc-300">Ankur Dahiya</strong>, Umang Goyal, Ayush &nbsp;·&nbsp; Submitted to COLM 2026
+        <div class="pl-4 border-l-2 border-zinc-300 dark:border-zinc-700">
+          <p class="font-serif text-base font-semibold text-zinc-900 dark:text-zinc-100 leading-snug mb-1">
+            CATPO: Critique-Augmented Tree Policy Optimization
           </p>
-          <p class="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed mb-4">
-            We propose CATPO, a novel RL alignment framework that augments tree-search policy optimization with structured critique feedback. By leveraging a critic model to generate fine-grained evaluations at each node of the policy tree, CATPO improves exploration efficiency and produces policies that are better aligned with human preferences compared to standard RLHF approaches.
+          <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-1">
+            <strong class="text-zinc-700 dark:text-zinc-300">Ankur Dahiya</strong>, Umang Goyal, Ayush
           </p>
-          <div class="flex items-center gap-2">
-            <a href="https://github.com/ankur777jinn" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-zinc-100 dark:bg-zinc-800 text-xs font-medium text-zinc-700 dark:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors">
-              <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-              Code
-            </a>
-            <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-zinc-50 dark:bg-zinc-800/50 text-xs font-medium text-zinc-400 dark:text-zinc-500 cursor-default">
-              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-              Paper (Soon)
-            </span>
+          <p class="text-xs text-zinc-400 dark:text-zinc-500 mb-2 italic">Submitted to COLM 2026 · Under review</p>
+          <div class="flex gap-3 text-xs">
+            <a href="https://github.com/ankur777jinn" target="_blank" rel="noopener" class="text-blue-700 dark:text-blue-400 hover:underline">[code]</a>
+            <span class="text-zinc-400 dark:text-zinc-500">[paper — coming soon]</span>
           </div>
         </div>
         <!-- Paper 2 -->
-        <div class="card bg-white dark:bg-zinc-900 rounded-xl border border-zinc-200/80 dark:border-zinc-800 p-6">
-          <div class="flex items-start justify-between gap-4 mb-2">
-            <h3 class="font-semibold text-zinc-900 dark:text-white text-[15px] leading-snug">
-              Natural Selection of LLMs via Pruning
-            </h3>
-            <span class="tag bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-300 flex-shrink-0">Accepted</span>
-          </div>
-          <p class="text-xs text-zinc-500 dark:text-zinc-400 mb-3">
-            Umang Goyal, <strong class="text-zinc-700 dark:text-zinc-300">Ankur Dahiya</strong>, Ayush &nbsp;·&nbsp; AAAI 2026 Student Abstract Track
+        <div class="pl-4 border-l-2 border-zinc-300 dark:border-zinc-700">
+          <p class="font-serif text-base font-semibold text-zinc-900 dark:text-zinc-100 leading-snug mb-1">
+            Natural Selection of LLMs via Pruning
           </p>
-          <p class="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed mb-4">
-            We draw an analogy between biological natural selection and neural network pruning to develop an evolutionary pruning framework for large language models. Our method iteratively evaluates subnetwork fitness, selects and mutates surviving structures, and produces compact models that retain competitive performance on downstream benchmarks while significantly reducing parameter count.
+          <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-1">
+            Umang Goyal, <strong class="text-zinc-700 dark:text-zinc-300">Ankur Dahiya</strong>, Ayush
           </p>
-          <div class="flex items-center gap-2">
-            <a href="https://github.com/ankur777jinn" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-zinc-100 dark:bg-zinc-800 text-xs font-medium text-zinc-700 dark:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors">
-              <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-              Code
-            </a>
-            <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-zinc-50 dark:bg-zinc-800/50 text-xs font-medium text-zinc-400 dark:text-zinc-500 cursor-default">
-              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-              Paper (Soon)
-            </span>
+          <p class="text-xs text-zinc-400 dark:text-zinc-500 mb-2 italic">AAAI 2026 · Student Abstract Track</p>
+          <div class="flex gap-3 text-xs">
+            <a href="https://github.com/ankur777jinn" target="_blank" rel="noopener" class="text-blue-700 dark:text-blue-400 hover:underline">[code]</a>
+            <span class="text-zinc-400 dark:text-zinc-500">[paper — coming soon]</span>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ========== NEWS / DISPATCHES ========== -->
-    <section id="news" class="mb-20 fade-in-up stagger-5">
-      <div class="flex items-center justify-between mb-6">
-        <div class="flex items-center gap-3">
-          <div class="section-line"></div>
-          <h2 class="text-xl font-bold text-zinc-900 dark:text-white tracking-tight">News &amp; Dispatches</h2>
-        </div>
-        <a href="updates.html" class="text-xs font-medium text-accent dark:text-accent-dark hover:underline flex items-center gap-1">
-          Full log
-          <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-        </a>
-      </div>
-      <div class="bg-white dark:bg-zinc-900 rounded-xl border border-zinc-200/80 dark:border-zinc-800 p-6">
-        <div class="news-scroll space-y-5 pr-2">
-          <div class="news-item pb-4">
-            <div class="flex items-baseline gap-3">
-              <span class="text-xs font-mono text-accent dark:text-accent-dark font-medium whitespace-nowrap">Jun 2026</span>
-              <p class="text-sm text-zinc-600 dark:text-zinc-300">Submitted <strong class="text-zinc-800 dark:text-zinc-100">CATPO</strong> to COLM 2026. The paper introduces critique-augmented tree policy optimization for improved RL alignment.</p>
-            </div>
-          </div>
-          <div class="news-item pb-4">
-            <div class="flex items-baseline gap-3">
-              <span class="text-xs font-mono text-accent dark:text-accent-dark font-medium whitespace-nowrap">Jun 2026</span>
-              <p class="text-sm text-zinc-600 dark:text-zinc-300">Completed full pipeline optimization pass on multi-node training cluster. Reduced epoch wall-clock time by 23% through gradient accumulation tuning and mixed-precision scheduling.</p>
-            </div>
-          </div>
-          <div class="news-item pb-4">
-            <div class="flex items-baseline gap-3">
-              <span class="text-xs font-mono text-accent dark:text-accent-dark font-medium whitespace-nowrap">Jun 2026</span>
-              <p class="text-sm text-zinc-600 dark:text-zinc-300">Wrote and deployed cluster validation scripts for automated health-checks on shared GPU nodes, now used across the VLG compute pool.</p>
-            </div>
-          </div>
-          <div class="news-item pb-4">
-            <div class="flex items-baseline gap-3">
-              <span class="text-xs font-mono text-accent dark:text-accent-dark font-medium whitespace-nowrap">May 2026</span>
-              <p class="text-sm text-zinc-600 dark:text-zinc-300">Presented our evolutionary pruning framework at a VLG internal reading group session, discussing scaling laws for pruned subnetworks.</p>
-            </div>
-          </div>
-          <div class="news-item pb-4">
-            <div class="flex items-baseline gap-3">
-              <span class="text-xs font-mono text-accent dark:text-accent-dark font-medium whitespace-nowrap">Apr 2026</span>
-              <p class="text-sm text-zinc-600 dark:text-zinc-300"><strong class="text-zinc-800 dark:text-zinc-100">"Natural Selection of LLMs via Pruning"</strong> accepted to the AAAI 2026 Student Abstract Track.</p>
-            </div>
-          </div>
-          <div class="news-item pb-4">
-            <div class="flex items-baseline gap-3">
-              <span class="text-xs font-mono text-accent dark:text-accent-dark font-medium whitespace-nowrap">Mar 2026</span>
-              <p class="text-sm text-zinc-600 dark:text-zinc-300">Started work on mechanistic interpretability experiments for transformer attention heads, focusing on indirect object identification circuits.</p>
-            </div>
-          </div>
-          <div class="news-item pb-4">
-            <div class="flex items-baseline gap-3">
-              <span class="text-xs font-mono text-accent dark:text-accent-dark font-medium whitespace-nowrap">Feb 2026</span>
-              <p class="text-sm text-zinc-600 dark:text-zinc-300">Joined the <strong class="text-zinc-800 dark:text-zinc-100">Vision and Language Group (VLG)</strong> at IIT Roorkee as a core research member.</p>
-            </div>
-          </div>
-          <div class="news-item pb-4">
-            <div class="flex items-baseline gap-3">
-              <span class="text-xs font-mono text-accent dark:text-accent-dark font-medium whitespace-nowrap">Jan 2026</span>
-              <p class="text-sm text-zinc-600 dark:text-zinc-300">Began the undergraduate program in Data Science &amp; Artificial Intelligence at IIT Roorkee.</p>
-            </div>
-          </div>
-        </div>
+    <!-- ===== EDUCATION ===== -->
+    <section class="reveal reveal-d4 mb-16">
+      <h2 class="font-serif text-2xl font-bold text-zinc-900 dark:text-white mb-6">Education</h2>
+      <div class="pl-4 border-l-2 border-zinc-300 dark:border-zinc-700">
+        <p class="font-serif text-base font-semibold text-zinc-900 dark:text-zinc-100 mb-0.5">Indian Institute of Technology, Roorkee</p>
+        <p class="text-sm text-zinc-600 dark:text-zinc-400">B.Tech in Data Science &amp; Artificial Intelligence</p>
+        <p class="text-xs text-zinc-400 dark:text-zinc-500 font-mono mt-1">2026 — present</p>
       </div>
     </section>
 
-    <!-- ========== EDUCATION ========== -->
-    <section id="education" class="mb-20 fade-in-up stagger-5">
-      <div class="flex items-center gap-3 mb-6">
-        <div class="section-line"></div>
-        <h2 class="text-xl font-bold text-zinc-900 dark:text-white tracking-tight">Education</h2>
-      </div>
-      <div class="card bg-white dark:bg-zinc-900 rounded-xl border border-zinc-200/80 dark:border-zinc-800 p-6">
-        <div class="flex items-start gap-4">
-          <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-accent to-blue-700 dark:from-accent-dark dark:to-blue-500 flex items-center justify-center flex-shrink-0">
-            <span class="text-white font-bold text-sm">IIT</span>
-          </div>
-          <div>
-            <h3 class="font-semibold text-zinc-900 dark:text-white text-[15px]">Indian Institute of Technology, Roorkee</h3>
-            <p class="text-sm text-zinc-500 dark:text-zinc-400 mt-0.5">B.Tech in Data Science &amp; Artificial Intelligence</p>
-            <p class="text-xs text-zinc-400 dark:text-zinc-500 mt-1 font-mono">2026 — Present</p>
-            <p class="text-xs text-zinc-500 dark:text-zinc-400 mt-2 leading-relaxed">Core member of the Vision and Language Group (VLG). Research focus on mechanistic interpretability, RL alignment, and model efficiency.</p>
-          </div>
-        </div>
-      </div>
+    <!-- ===== CONTACT ===== -->
+    <section class="reveal reveal-d5 mb-8">
+      <h2 class="font-serif text-2xl font-bold text-zinc-900 dark:text-white mb-4">Get in Touch</h2>
+      <p class="font-serif text-[1.05rem] text-zinc-600 dark:text-zinc-400 leading-relaxed">
+        I'm always happy to chat about research ideas, potential collaborations, or just interesting problems. 
+        Drop me an email at <a href="mailto:adahiya@ds.iitr.ac.in" class="link">adahiya@ds.iitr.ac.in</a>, 
+        or find me on <a href="https://x.com/" target="_blank" rel="noopener" class="link">Twitter</a>.
+      </p>
     </section>
 
-    <!-- ========== CONTACT ========== -->
-    <section id="contact" class="mb-10 fade-in-up stagger-6">
-      <div class="flex items-center gap-3 mb-6">
-        <div class="section-line"></div>
-        <h2 class="text-xl font-bold text-zinc-900 dark:text-white tracking-tight">Contact</h2>
-      </div>
-      <div class="bg-white dark:bg-zinc-900 rounded-xl border border-zinc-200/80 dark:border-zinc-800 p-6">
-        <p class="text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed mb-4">
-          I'm always open to discussing research collaborations, interesting problems, or opportunities. Feel free to reach out through any of the channels below.
-        </p>
-        <div class="flex flex-wrap gap-3">
-          <a href="mailto:ankurdahiya@example.com" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-accent text-white text-sm font-medium hover:bg-blue-700 transition-colors">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-            Email Me
-          </a>
-          <a href="https://github.com/ankur777jinn" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-zinc-900 dark:bg-zinc-700 text-white text-sm font-medium hover:bg-zinc-800 dark:hover:bg-zinc-600 transition-colors">
-            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-            GitHub
-          </a>
-          <a href="https://x.com/" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 text-sm font-medium hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors">
-            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-            Twitter / X
-          </a>
-        </div>
-      </div>
-    </section>
   </main>
 
-  <!-- ========== FOOTER ========== -->
-  <footer class="border-t border-zinc-200/60 dark:border-zinc-800/60 bg-white/50 dark:bg-zinc-900/50">
-    <div class="max-w-5xl mx-auto px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-      <p class="text-xs text-zinc-400 dark:text-zinc-500">
-        &copy; 2026 Ankur Dahiya. Built with plain HTML, CSS, and a little bit of stubbornness.
-      </p>
-      <div class="flex items-center gap-4">
-        <a href="https://github.com/ankur777jinn" target="_blank" rel="noopener" class="text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300 transition-colors">
-          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-        </a>
-        <a href="https://linkedin.com/in/" target="_blank" rel="noopener" class="text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300 transition-colors">
-          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-        </a>
-      </div>
-    </div>
+  <!-- Footer -->
+  <footer class="max-w-3xl mx-auto px-6 py-8 border-t border-zinc-200 dark:border-zinc-800">
+    <p class="text-xs text-zinc-400 dark:text-zinc-600">
+      &copy; 2026 Ankur Dahiya · Plain HTML, no frameworks
+    </p>
   </footer>
 
-  <!-- ========== SCRIPTS ========== -->
+  <!-- Theme toggle script -->
   <script>
-    // Dark mode toggle
     (function() {
-      const toggle = document.getElementById('theme-toggle');
-      const sunIcon = document.getElementById('sun-icon');
-      const moonIcon = document.getElementById('moon-icon');
-      const html = document.documentElement;
-      
-      function setTheme(dark) {
-        if (dark) {
-          html.classList.add('dark');
-          sunIcon.classList.remove('hidden');
-          moonIcon.classList.add('hidden');
-        } else {
-          html.classList.remove('dark');
-          sunIcon.classList.add('hidden');
-          moonIcon.classList.remove('hidden');
-        }
+      var t = document.getElementById('theme-toggle'),
+          s = document.getElementById('sun-icon'),
+          m = document.getElementById('moon-icon'),
+          h = document.documentElement;
+      function set(dark) {
+        h.classList.toggle('dark', dark);
+        s.classList.toggle('hidden', !dark);
+        m.classList.toggle('hidden', dark);
         localStorage.setItem('theme', dark ? 'dark' : 'light');
       }
-      
-      // Initialize: default to light
-      const saved = localStorage.getItem('theme');
-      if (saved === 'dark') {
-        setTheme(true);
-      } else {
-        setTheme(false);
-      }
-      
-      toggle.addEventListener('click', function() {
-        setTheme(!html.classList.contains('dark'));
-      });
-    })();
-
-    // Mobile menu toggle
-    (function() {
-      const btn = document.getElementById('mobile-menu-btn');
-      const menu = document.getElementById('mobile-menu');
-      btn.addEventListener('click', function() {
-        menu.classList.toggle('hidden');
-      });
-    })();
-
-    // Intersection Observer for fade-in animations
-    (function() {
-      const observer = new IntersectionObserver(function(entries) {
-        entries.forEach(function(entry) {
-          if (entry.isIntersecting) {
-            entry.target.style.animationPlayState = 'running';
-            observer.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.1 });
-
-      document.querySelectorAll('.fade-in, .fade-in-up').forEach(function(el) {
-        el.style.animationPlayState = 'paused';
-        observer.observe(el);
-      });
+      set(localStorage.getItem('theme') === 'dark');
+      t.onclick = function() { set(!h.classList.contains('dark')); };
     })();
   </script>
 </body>

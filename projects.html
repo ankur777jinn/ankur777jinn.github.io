@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projects — Ankur Dahiya</title>
+  <meta name="description" content="Research and engineering projects by Ankur Dahiya." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            serif: ['"Source Serif 4"', 'Georgia', 'serif'],
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            page: { light: '#faf9f6', dark: '#141417' },
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    ::selection { background: #c8a96433; }
+    .dark ::selection { background: #c8a96433; }
+
+    a.link { color: #1a5fb4; text-decoration: none; }
+    a.link:hover { text-decoration: underline; }
+    .dark a.link { color: #8cb4f0; }
+
+    .nav-pill { transition: all 0.2s; }
+    .nav-pill:hover { background: #00000008; }
+    .dark .nav-pill:hover { background: #ffffff08; }
+    .nav-pill.active { background: #1a1a1a; color: #fff; }
+    .dark .nav-pill.active { background: #e5e5e5; color: #141417; }
+
+    .reveal { opacity: 0; transform: translateY(10px); animation: reveal 0.6s ease forwards; }
+    @keyframes reveal { to { opacity: 1; transform: none; } }
+    .d1 { animation-delay: 0.1s; }
+    .d2 { animation-delay: 0.2s; }
+    .d3 { animation-delay: 0.3s; }
+    .d4 { animation-delay: 0.4s; }
+
+    .tag { display: inline-block; padding: 2px 10px; border-radius: 9999px; font-size: 0.75rem; font-weight: 500; }
+    .tag-python { background: #3b82f610; color: #3b82f6; }
+    .dark .tag-python { background: #3b82f620; }
+    .tag-verilog { background: #8b5cf610; color: #8b5cf6; }
+    .dark .tag-verilog { background: #8b5cf620; }
+    .tag-ml { background: #f59e0b10; color: #d97706; }
+    .dark .tag-ml { background: #f59e0b20; color: #fbbf24; }
+    .tag-interp { background: #10b98110; color: #059669; }
+    .dark .tag-interp { background: #10b98120; color: #34d399; }
+    .tag-rl { background: #ef444410; color: #dc2626; }
+    .dark .tag-rl { background: #ef444420; color: #f87171; }
+  </style>
+</head>
+<body class="bg-page-light dark:bg-page-dark text-zinc-800 dark:text-zinc-300 transition-colors duration-200">
+
+  <!-- ===== NAV ===== -->
+  <nav class="w-full px-6 md:px-12 lg:px-24 xl:px-32 2xl:px-48 pt-7 pb-5 flex items-center justify-between">
+    <a href="index.html" class="font-serif text-xl font-bold text-zinc-900 dark:text-white tracking-tight">Ankur Dahiya</a>
+    <div class="flex items-center gap-2">
+      <a href="index.html" class="nav-pill rounded-full px-4 py-1.5 text-sm font-sans font-medium text-zinc-600 dark:text-zinc-400">Home</a>
+      <a href="research.html" class="nav-pill rounded-full px-4 py-1.5 text-sm font-sans font-medium text-zinc-600 dark:text-zinc-400">Publications</a>
+      <a href="projects.html" class="nav-pill active rounded-full px-4 py-1.5 text-sm font-sans font-medium">Projects</a>
+      <a href="updates.html" class="nav-pill rounded-full px-4 py-1.5 text-sm font-sans font-medium text-zinc-600 dark:text-zinc-400">Blog</a>
+      <div class="w-px h-5 bg-zinc-200 dark:bg-zinc-700 mx-2"></div>
+      <button id="theme-toggle" class="nav-pill rounded-full p-2 text-zinc-500 dark:text-zinc-400" aria-label="Toggle theme">
+        <svg id="moon-icon" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+        <svg id="sun-icon" class="w-4 h-4 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <main class="w-full px-6 md:px-12 lg:px-24 xl:px-32 2xl:px-48 py-14">
+
+    <h1 class="reveal font-serif text-4xl md:text-5xl font-bold text-zinc-900 dark:text-white mb-4 tracking-tight">Projects</h1>
+    <p class="reveal d1 font-sans text-lg text-zinc-500 dark:text-zinc-400 mb-16 lg:w-[85%] xl:w-[75%]">
+      A mix of research codebases, course projects, and things I built to learn. Everything is on <a href="https://github.com/ankur777jinn" target="_blank" rel="noopener" class="link">GitHub</a>.
+    </p>
+
+    <!-- ===== RESEARCH PROJECTS ===== -->
+    <section class="reveal d1 mb-20">
+      <h2 class="font-sans text-sm tracking-widest uppercase text-zinc-400 dark:text-zinc-500 font-medium mb-10">Research</h2>
+
+      <div class="space-y-14 lg:w-[85%] xl:w-[75%]">
+
+        <!-- Genetic Pruning -->
+        <article>
+          <h3 class="font-serif text-xl xl:text-2xl font-bold text-zinc-900 dark:text-zinc-100 leading-snug mb-2">
+            Genetic Pruning
+          </h3>
+          <p class="font-serif text-lg text-zinc-700 dark:text-zinc-300 leading-relaxed mb-4">
+            Evolutionary pruning framework for large language models. Treats subnetworks as organisms in a population, evolving compact architectures through selection, crossover, and mutation. The codebase behind our AAAI 2026 Student Abstract on "Natural Selection of LLMs via Pruning."
+          </p>
+          <div class="flex flex-wrap items-center gap-3 mb-3">
+            <span class="tag tag-python">Python</span>
+            <span class="tag tag-ml">Model Pruning</span>
+          </div>
+          <a href="https://github.com/ankur777jinn/Genetic-Pruning" target="_blank" rel="noopener" class="link font-sans text-sm font-medium">github →</a>
+        </article>
+
+        <!-- Sycophancy & Sandbagging -->
+        <article>
+          <h3 class="font-serif text-xl xl:text-2xl font-bold text-zinc-900 dark:text-zinc-100 leading-snug mb-2">
+            Sycophancy &amp; Sandbagging Aren't That Different
+          </h3>
+          <p class="font-serif text-lg text-zinc-700 dark:text-zinc-300 leading-relaxed mb-4">
+            An investigation into whether sycophancy and sandbagging share mechanistic roots inside transformer models. If they're mechanistically distinct, safety researchers need separate classifiers and steering vectors for every failure mode — if they're not, a unified intervention might suffice.
+          </p>
+          <div class="flex flex-wrap items-center gap-3 mb-3">
+            <span class="tag tag-interp">Interpretability</span>
+            <span class="tag tag-rl">Alignment</span>
+          </div>
+          <a href="https://github.com/ankur777jinn/Sycophancy-and-Sandbagging-aren-t-that-different" target="_blank" rel="noopener" class="link font-sans text-sm font-medium">github →</a>
+        </article>
+
+        <!-- RLHF -->
+        <article>
+          <h3 class="font-serif text-xl xl:text-2xl font-bold text-zinc-900 dark:text-zinc-100 leading-snug mb-2">
+            RLHF &amp; Optimization Techniques
+          </h3>
+          <p class="font-serif text-lg text-zinc-700 dark:text-zinc-300 leading-relaxed mb-4">
+            Implementations and experiments around reinforcement learning from human feedback — reward modeling, PPO fine-tuning, DPO, and various optimization techniques for aligning language models with human preferences.
+          </p>
+          <div class="flex flex-wrap items-center gap-3 mb-3">
+            <span class="tag tag-rl">RL Alignment</span>
+            <span class="tag tag-python">Python</span>
+          </div>
+          <a href="https://github.com/ankur777jinn/RLHF-and-Optimization-Techniques" target="_blank" rel="noopener" class="link font-sans text-sm font-medium">github →</a>
+        </article>
+
+        <!-- Multi-Pref Alignment -->
+        <article>
+          <h3 class="font-serif text-xl xl:text-2xl font-bold text-zinc-900 dark:text-zinc-100 leading-snug mb-2">
+            Multi-Preference Alignment
+          </h3>
+          <p class="font-serif text-lg text-zinc-700 dark:text-zinc-300 leading-relaxed mb-4">
+            Exploring multi-objective preference optimization for language models — aligning models to satisfy multiple, potentially conflicting, human preference dimensions simultaneously.
+          </p>
+          <div class="flex flex-wrap items-center gap-3 mb-3">
+            <span class="tag tag-rl">RL Alignment</span>
+            <span class="tag tag-python">Python</span>
+          </div>
+          <a href="https://github.com/ankur777jinn/multi-pref-alignment" target="_blank" rel="noopener" class="link font-sans text-sm font-medium">github →</a>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ===== ENGINEERING / COURSE PROJECTS ===== -->
+    <section class="reveal d3 mb-20">
+      <h2 class="font-sans text-sm tracking-widest uppercase text-zinc-400 dark:text-zinc-500 font-medium mb-10">Engineering &amp; Course Work</h2>
+
+      <div class="space-y-14 lg:w-[85%] xl:w-[75%]">
+
+        <!-- RISC-V -->
+        <article>
+          <h3 class="font-serif text-xl xl:text-2xl font-bold text-zinc-900 dark:text-zinc-100 leading-snug mb-2">
+            RISC-V Processor
+          </h3>
+          <p class="font-serif text-lg text-zinc-700 dark:text-zinc-300 leading-relaxed mb-4">
+            A pipelined RISC-V processor implementation in Verilog. Includes the standard 5-stage pipeline with hazard detection, forwarding, and branch prediction. Built as part of computer architecture coursework.
+          </p>
+          <div class="flex flex-wrap items-center gap-3 mb-3">
+            <span class="tag tag-verilog">Verilog</span>
+          </div>
+          <a href="https://github.com/ankur777jinn/RISCV-Processor" target="_blank" rel="noopener" class="link font-sans text-sm font-medium">github →</a>
+        </article>
+
+        <!-- Facial Features -->
+        <article>
+          <h3 class="font-serif text-xl xl:text-2xl font-bold text-zinc-900 dark:text-zinc-100 leading-snug mb-2">
+            Facial Features Recognition
+          </h3>
+          <p class="font-serif text-lg text-zinc-700 dark:text-zinc-300 leading-relaxed mb-4">
+            A computer vision pipeline for detecting and classifying facial features. Uses convolutional neural networks for feature extraction and classification across standard face attribute benchmarks.
+          </p>
+          <div class="flex flex-wrap items-center gap-3 mb-3">
+            <span class="tag tag-python">Python</span>
+            <span class="tag tag-ml">Computer Vision</span>
+          </div>
+          <a href="https://github.com/ankur777jinn/Facial-Features-Recognition" target="_blank" rel="noopener" class="link font-sans text-sm font-medium">github →</a>
+        </article>
+
+        <!-- DAC-202 -->
+        <article>
+          <h3 class="font-serif text-xl xl:text-2xl font-bold text-zinc-900 dark:text-zinc-100 leading-snug mb-2">
+            DAC-202
+          </h3>
+          <p class="font-serif text-lg text-zinc-700 dark:text-zinc-300 leading-relaxed mb-4">
+            Course project for the DAC-202 module at IIT Roorkee. Covers foundational data analysis and computational methods.
+          </p>
+          <div class="flex flex-wrap items-center gap-3 mb-3">
+            <span class="tag tag-python">Python</span>
+          </div>
+          <a href="https://github.com/ankur777jinn/DAC-202" target="_blank" rel="noopener" class="link font-sans text-sm font-medium">github →</a>
+        </article>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="w-full px-6 md:px-12 lg:px-24 xl:px-32 2xl:px-48 py-10 border-t border-zinc-200/60 dark:border-zinc-800/40">
+    <p class="text-sm text-zinc-400 dark:text-zinc-600 font-sans">
+      &copy; 2026 Ankur Dahiya
+    </p>
+  </footer>
+
+  <script>
+    (function() {
+      var t = document.getElementById('theme-toggle'),
+          s = document.getElementById('sun-icon'),
+          m = document.getElementById('moon-icon'),
+          h = document.documentElement;
+      function set(dark) {
+        h.classList.toggle('dark', dark);
+        s.classList.toggle('hidden', !dark);
+        m.classList.toggle('hidden', dark);
+        localStorage.setItem('theme', dark ? 'dark' : 'light');
+      }
+      set(localStorage.getItem('theme') === 'dark');
+      t.onclick = function() { set(!h.classList.contains('dark')); };
+    })();
+  </script>
+</body>
+</html>

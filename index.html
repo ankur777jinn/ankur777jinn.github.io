@@ -7,7 +7,7 @@
   <meta name="description" content="Ankur Dahiya — Undergraduate researcher at IIT Roorkee. Mechanistic Interpretability, RL Alignment, Model Pruning." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -17,222 +17,228 @@
           fontFamily: {
             serif: ['"Source Serif 4"', 'Georgia', 'serif'],
             sans: ['Inter', 'system-ui', 'sans-serif'],
-            mono: ['"JetBrains Mono"', 'monospace'],
           },
           colors: {
-            page: { light: '#faf9f6', dark: '#151518' },
-            surface: { light: '#f0efeb', dark: '#1c1c21' },
+            page: { light: '#faf9f6', dark: '#141417' },
           },
         },
       },
     };
   </script>
   <style>
-    ::selection { background: #2563eb33; }
-    .dark ::selection { background: #60a5fa33; }
+    ::selection { background: #c8a96433; }
+    .dark ::selection { background: #c8a96433; }
 
-    a.link { color: #1d4ed8; text-decoration: none; border-bottom: 1px solid #1d4ed833; transition: border-color 0.2s; }
-    a.link:hover { border-color: #1d4ed8; }
-    .dark a.link { color: #93b4f4; border-bottom-color: #93b4f433; }
-    .dark a.link:hover { border-color: #93b4f4; }
+    a.link { color: #1a5fb4; text-decoration: none; }
+    a.link:hover { text-decoration: underline; }
+    .dark a.link { color: #8cb4f0; }
 
-    .nav-active { border-bottom: 2px solid #1d4ed8; padding-bottom: 2px; }
-    .dark .nav-active { border-bottom-color: #93b4f4; }
+    /* Photo slideshow */
+    .slideshow { position: relative; overflow: hidden; }
+    .slideshow img {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      object-fit: cover; opacity: 0; transition: opacity 1.2s ease;
+    }
+    .slideshow img.active { opacity: 1; position: relative; }
 
-    .news-row:hover { background: #f0efeb; }
-    .dark .news-row:hover { background: #1c1c21; }
+    /* Nav pill */
+    .nav-pill { transition: all 0.2s; }
+    .nav-pill:hover { background: #00000008; }
+    .dark .nav-pill:hover { background: #ffffff08; }
+    .nav-pill.active { background: #1a1a1a; color: #fff; }
+    .dark .nav-pill.active { background: #e5e5e5; color: #141417; }
 
-    /* Simple fade on load */
-    .reveal { opacity: 0; transform: translateY(8px); animation: reveal 0.5s ease forwards; }
+    .reveal { opacity: 0; transform: translateY(10px); animation: reveal 0.6s ease forwards; }
     @keyframes reveal { to { opacity: 1; transform: none; } }
-    .reveal-d1 { animation-delay: 0.05s; }
-    .reveal-d2 { animation-delay: 0.15s; }
-    .reveal-d3 { animation-delay: 0.25s; }
-    .reveal-d4 { animation-delay: 0.35s; }
-    .reveal-d5 { animation-delay: 0.45s; }
+    .d1 { animation-delay: 0.08s; }
+    .d2 { animation-delay: 0.16s; }
+    .d3 { animation-delay: 0.28s; }
+    .d4 { animation-delay: 0.38s; }
+    .d5 { animation-delay: 0.48s; }
   </style>
 </head>
 <body class="bg-page-light dark:bg-page-dark text-zinc-800 dark:text-zinc-300 transition-colors duration-200">
 
-  <!-- Nav -->
-  <nav class="max-w-3xl mx-auto px-6 pt-8 pb-4 flex items-center justify-between text-sm font-sans">
-    <div class="flex items-center gap-6">
-      <a href="index.html" class="nav-active font-semibold text-zinc-900 dark:text-white">about</a>
-      <a href="research.html" class="text-zinc-500 dark:text-zinc-400 hover:text-zinc-800 dark:hover:text-zinc-200 transition-colors">publications</a>
-      <a href="updates.html" class="text-zinc-500 dark:text-zinc-400 hover:text-zinc-800 dark:hover:text-zinc-200 transition-colors">blog</a>
+  <!-- ===== NAV ===== -->
+  <nav class="w-full px-6 md:px-12 lg:px-24 xl:px-32 2xl:px-48 pt-7 pb-5 flex items-center justify-between">
+    <a href="index.html" class="font-serif text-xl font-bold text-zinc-900 dark:text-white tracking-tight">Ankur Dahiya</a>
+    <div class="flex items-center gap-2">
+      <a href="index.html" class="nav-pill active rounded-full px-4 py-1.5 text-sm font-sans font-medium">Home</a>
+      <a href="research.html" class="nav-pill rounded-full px-4 py-1.5 text-sm font-sans font-medium text-zinc-600 dark:text-zinc-400">Publications</a>
+      <a href="updates.html" class="nav-pill rounded-full px-4 py-1.5 text-sm font-sans font-medium text-zinc-600 dark:text-zinc-400">Blog</a>
+      <div class="w-px h-5 bg-zinc-200 dark:bg-zinc-700 mx-2"></div>
+      <button id="theme-toggle" class="nav-pill rounded-full p-2 text-zinc-500 dark:text-zinc-400" aria-label="Toggle theme">
+        <svg id="moon-icon" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+        <svg id="sun-icon" class="w-4 h-4 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+      </button>
     </div>
-    <button id="theme-toggle" class="text-zinc-400 dark:text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors" aria-label="Toggle theme">
-      <svg id="moon-icon" class="w-[18px] h-[18px]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
-      <svg id="sun-icon" class="w-[18px] h-[18px] hidden" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
-    </button>
   </nav>
 
-  <hr class="max-w-3xl mx-auto border-zinc-200 dark:border-zinc-800 mx-6" />
-
-  <main class="max-w-3xl mx-auto px-6 py-10">
+  <main class="w-full px-6 md:px-12 lg:px-24 xl:px-32 2xl:px-48 pb-24">
 
     <!-- ===== HERO ===== -->
-    <section class="reveal flex flex-col-reverse md:flex-row gap-8 md:gap-12 items-start mb-16">
-      <!-- Text -->
-      <div class="flex-1 min-w-0">
-        <h1 class="font-serif text-[2.5rem] md:text-[3rem] font-bold leading-[1.1] text-zinc-900 dark:text-white mb-4 tracking-tight">
+    <section class="reveal flex flex-col lg:flex-row gap-12 xl:gap-20 items-start pt-10 pb-24 w-full">
+      <!-- Photo slideshow (ON THE LEFT) -->
+      <div class="flex-shrink-0 w-full md:w-3/4 lg:w-[400px] xl:w-[480px]">
+        <div class="slideshow rounded-2xl aspect-[3/4] shadow-xl dark:shadow-black/40">
+          <img src="profile.jpg" alt="Ankur Dahiya" class="active rounded-2xl" />
+          <img src="photo2.jpg" alt="Ankur Dahiya" class="rounded-2xl" />
+          <img src="photo3.jpg" alt="Ankur Dahiya" class="rounded-2xl" />
+        </div>
+      </div>
+
+      <!-- Bio (ON THE RIGHT) -->
+      <div class="flex-1 min-w-0 pt-2 lg:pt-8 w-full">
+        <h1 class="reveal d1 font-serif text-5xl md:text-6xl xl:text-7xl font-bold leading-[1.05] text-zinc-900 dark:text-white mb-6 tracking-tight">
           Ankur Dahiya
         </h1>
-        <p class="font-sans text-xs tracking-widest uppercase text-zinc-400 dark:text-zinc-500 mb-6 font-medium">
-          AI Researcher &nbsp;·&nbsp; IIT Roorkee &nbsp;·&nbsp; India
+        <p class="reveal d1 font-sans text-sm xl:text-base tracking-wide text-zinc-400 dark:text-zinc-500 mb-10 uppercase">
+          Undergraduate Researcher &nbsp;·&nbsp; IIT Roorkee &nbsp;·&nbsp; India
         </p>
 
-        <div class="font-serif text-[1.05rem] leading-[1.75] text-zinc-700 dark:text-zinc-300 space-y-4">
+        <div class="reveal d2 font-serif text-xl md:text-2xl xl:text-[1.7rem] leading-[1.8] text-zinc-700 dark:text-zinc-300 space-y-6">
           <p>
             Hi, I'm Ankur. I'm an undergrad studying <strong class="text-zinc-900 dark:text-zinc-100">Data Science &amp; Artificial Intelligence</strong> at IIT Roorkee, and a core member of the <a href="https://vlgiitr.github.io/" target="_blank" rel="noopener" class="link">Vision and Language Group (VLG)</a>.
           </p>
           <p>
-            My research is about understanding how large models work internally and making them better aligned, more efficient, and more trustworthy. I'm particularly drawn to <strong class="text-zinc-900 dark:text-zinc-100">mechanistic interpretability</strong> — reverse-engineering the circuits and algorithms that neural networks learn — and to building <strong class="text-zinc-900 dark:text-zinc-100">RL alignment frameworks</strong> that go beyond scalar reward signals.
+            My research sits at the intersection of understanding and improving large-scale models. I work on <strong class="text-zinc-900 dark:text-zinc-100">mechanistic interpretability</strong> — figuring out the algorithms neural networks actually learn inside — and on <strong class="text-zinc-900 dark:text-zinc-100">RL alignment</strong>, building training methods that go beyond simple scalar rewards to produce models that do what we actually want.
           </p>
           <p>
-            On the practical side, I care a lot about <strong class="text-zinc-900 dark:text-zinc-100">model pruning</strong> (we recently got a paper accepted at AAAI on evolutionary pruning of LLMs) and about the <strong class="text-zinc-900 dark:text-zinc-100">compute infrastructure</strong> that makes all this research possible — pipeline optimization, cluster health-checks, the stuff nobody talks about but everybody needs.
+            I also spend a lot of time on <strong class="text-zinc-900 dark:text-zinc-100">model pruning</strong> (we got a paper into AAAI on evolutionary pruning of LLMs) and on the <strong class="text-zinc-900 dark:text-zinc-100">compute infrastructure</strong> side — the pipeline optimization, cluster health-checks, and training efficiency work that nobody talks about but everybody needs.
           </p>
           <p>
             Outside of research, I like long walks, overthinking font choices, and occasionally submitting to the void that is academic peer review.
           </p>
-          <p class="text-zinc-500 dark:text-zinc-400 text-[0.95rem]">
-            You can check out my <a href="research.html" class="link">publications</a>, read my <a href="updates.html" class="link">blog</a>, or grab my <a href="#" class="link">resume ↓</a>.
-          </p>
         </div>
 
-        <!-- Social icons -->
-        <div class="flex items-center gap-5 mt-8">
-          <a href="mailto:adahiya@ds.iitr.ac.in" class="text-zinc-400 dark:text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors" title="Email">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>
-          </a>
-          <a href="https://github.com/ankur777jinn" target="_blank" rel="noopener" class="text-zinc-400 dark:text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors" title="GitHub">
-            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-          </a>
-          <a href="https://scholar.google.com/" target="_blank" rel="noopener" class="text-zinc-400 dark:text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors" title="Google Scholar">
-            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/></svg>
-          </a>
-          <a href="https://x.com/" target="_blank" rel="noopener" class="text-zinc-400 dark:text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors" title="Twitter / X">
-            <svg class="w-[18px] h-[18px]" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-          </a>
-          <a href="https://linkedin.com/in/" target="_blank" rel="noopener" class="text-zinc-400 dark:text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors" title="LinkedIn">
-            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-          </a>
+        <div class="reveal d3 flex flex-wrap items-center gap-4 xl:gap-6 mt-12 text-base xl:text-lg font-sans">
+          <span class="text-zinc-400 dark:text-zinc-500">Find me on</span>
+          <a href="https://github.com/ankur777jinn" target="_blank" rel="noopener" class="link font-medium">GitHub</a>
+          <span class="text-zinc-300 dark:text-zinc-600">·</span>
+          <a href="https://scholar.google.com/" target="_blank" rel="noopener" class="link font-medium">Scholar</a>
+          <span class="text-zinc-300 dark:text-zinc-600">·</span>
+          <a href="https://x.com/" target="_blank" rel="noopener" class="link font-medium">Twitter</a>
+          <span class="text-zinc-300 dark:text-zinc-600">·</span>
+          <a href="https://linkedin.com/in/" target="_blank" rel="noopener" class="link font-medium">LinkedIn</a>
+          <span class="text-zinc-300 dark:text-zinc-600">·</span>
+          <a href="mailto:adahiya@ds.iitr.ac.in" class="link font-medium">Email</a>
         </div>
-      </div>
 
-      <!-- Photo -->
-      <div class="flex-shrink-0 w-56 md:w-64">
-        <img src="profile.jpg" alt="Ankur Dahiya" class="w-full rounded-lg shadow-md dark:shadow-zinc-900/50 object-cover" />
+        <p class="reveal d3 mt-6 text-base xl:text-lg font-sans text-zinc-400 dark:text-zinc-500">
+          You can also grab my <a href="#" class="link">resume ↓</a>
+        </p>
       </div>
     </section>
 
     <!-- ===== NEWS ===== -->
-    <section class="reveal reveal-d2 mb-16">
-      <h2 class="font-serif text-2xl font-bold text-zinc-900 dark:text-white mb-6">News</h2>
-      <div class="divide-y divide-zinc-200 dark:divide-zinc-800 border-t border-b border-zinc-200 dark:border-zinc-800">
-        <div class="news-row flex gap-4 py-3 px-2 transition-colors rounded-sm">
-          <span class="font-mono text-xs text-zinc-400 dark:text-zinc-500 w-24 flex-shrink-0 pt-0.5">Jun 2026</span>
-          <p class="text-sm text-zinc-700 dark:text-zinc-300">Submitted <strong class="text-zinc-900 dark:text-zinc-100">CATPO: Critique-Augmented Tree Policy Optimization</strong> to COLM 2026. Introduces critique-augmented tree search for RL alignment.</p>
+    <section class="reveal d3 mb-24 w-full">
+      <h2 class="font-serif text-4xl xl:text-5xl font-bold text-zinc-900 dark:text-white mb-10">News</h2>
+
+      <div class="space-y-6 w-full lg:w-[85%] xl:w-[75%]">
+        <div class="flex flex-col md:flex-row gap-2 md:gap-8">
+          <span class="font-sans text-base text-zinc-400 dark:text-zinc-500 md:w-32 flex-shrink-0 pt-1 font-medium">Jun 2026</span>
+          <p class="font-serif text-xl xl:text-2xl text-zinc-700 dark:text-zinc-300 leading-relaxed">Submitted <strong class="text-zinc-900 dark:text-zinc-100">CATPO: Critique-Augmented Tree Policy Optimization</strong> to COLM 2026. The paper introduces critique-augmented tree search for RL alignment.</p>
         </div>
-        <div class="news-row flex gap-4 py-3 px-2 transition-colors rounded-sm">
-          <span class="font-mono text-xs text-zinc-400 dark:text-zinc-500 w-24 flex-shrink-0 pt-0.5">Jun 2026</span>
-          <p class="text-sm text-zinc-700 dark:text-zinc-300">Optimized multi-node training pipeline — reduced epoch wall-clock time by 23% via gradient accumulation tuning and mixed-precision scheduling.</p>
+        <div class="flex flex-col md:flex-row gap-2 md:gap-8">
+          <span class="font-sans text-base text-zinc-400 dark:text-zinc-500 md:w-32 flex-shrink-0 pt-1 font-medium">Jun 2026</span>
+          <p class="font-serif text-xl xl:text-2xl text-zinc-700 dark:text-zinc-300 leading-relaxed">Optimized our multi-node training pipeline — reduced epoch wall-clock time by 23% through gradient accumulation tuning and mixed-precision scheduling.</p>
         </div>
-        <div class="news-row flex gap-4 py-3 px-2 transition-colors rounded-sm">
-          <span class="font-mono text-xs text-zinc-400 dark:text-zinc-500 w-24 flex-shrink-0 pt-0.5">Jun 2026</span>
-          <p class="text-sm text-zinc-700 dark:text-zinc-300">Deployed automated cluster validation scripts across the VLG compute pool for GPU health-checks.</p>
+        <div class="flex flex-col md:flex-row gap-2 md:gap-8">
+          <span class="font-sans text-base text-zinc-400 dark:text-zinc-500 md:w-32 flex-shrink-0 pt-1 font-medium">Jun 2026</span>
+          <p class="font-serif text-xl xl:text-2xl text-zinc-700 dark:text-zinc-300 leading-relaxed">Deployed automated cluster validation scripts across the VLG compute pool for GPU health-checks.</p>
         </div>
-        <div class="news-row flex gap-4 py-3 px-2 transition-colors rounded-sm">
-          <span class="font-mono text-xs text-zinc-400 dark:text-zinc-500 w-24 flex-shrink-0 pt-0.5">May 2026</span>
-          <p class="text-sm text-zinc-700 dark:text-zinc-300">Presented evolutionary pruning framework at VLG internal reading group — discussed scaling laws for pruned subnetworks.</p>
+        <div class="flex flex-col md:flex-row gap-2 md:gap-8">
+          <span class="font-sans text-base text-zinc-400 dark:text-zinc-500 md:w-32 flex-shrink-0 pt-1 font-medium">May 2026</span>
+          <p class="font-serif text-xl xl:text-2xl text-zinc-700 dark:text-zinc-300 leading-relaxed">Presented evolutionary pruning framework at VLG internal reading group — discussed scaling laws for pruned subnetworks.</p>
         </div>
-        <div class="news-row flex gap-4 py-3 px-2 transition-colors rounded-sm">
-          <span class="font-mono text-xs text-zinc-400 dark:text-zinc-500 w-24 flex-shrink-0 pt-0.5">Apr 2026</span>
-          <p class="text-sm text-zinc-700 dark:text-zinc-300"><strong class="text-zinc-900 dark:text-zinc-100">"Natural Selection of LLMs via Pruning"</strong> accepted to the AAAI 2026 Student Abstract Track.</p>
+        <div class="flex flex-col md:flex-row gap-2 md:gap-8">
+          <span class="font-sans text-base text-zinc-400 dark:text-zinc-500 md:w-32 flex-shrink-0 pt-1 font-medium">Apr 2026</span>
+          <p class="font-serif text-xl xl:text-2xl text-zinc-700 dark:text-zinc-300 leading-relaxed"><strong class="text-zinc-900 dark:text-zinc-100">"Natural Selection of LLMs via Pruning"</strong> accepted to the AAAI 2026 Student Abstract Track.</p>
         </div>
-        <div class="news-row flex gap-4 py-3 px-2 transition-colors rounded-sm">
-          <span class="font-mono text-xs text-zinc-400 dark:text-zinc-500 w-24 flex-shrink-0 pt-0.5">Mar 2026</span>
-          <p class="text-sm text-zinc-700 dark:text-zinc-300">Started mechanistic interpretability experiments — replicating IOI circuit analysis on GPT-2 Small and Pythia 410M.</p>
+        <div class="flex flex-col md:flex-row gap-2 md:gap-8">
+          <span class="font-sans text-base text-zinc-400 dark:text-zinc-500 md:w-32 flex-shrink-0 pt-1 font-medium">Mar 2026</span>
+          <p class="font-serif text-xl xl:text-2xl text-zinc-700 dark:text-zinc-300 leading-relaxed">Started mechanistic interpretability experiments — replicating IOI circuit analysis on GPT-2 Small and Pythia 410M.</p>
         </div>
-        <div class="news-row flex gap-4 py-3 px-2 transition-colors rounded-sm">
-          <span class="font-mono text-xs text-zinc-400 dark:text-zinc-500 w-24 flex-shrink-0 pt-0.5">Feb 2026</span>
-          <p class="text-sm text-zinc-700 dark:text-zinc-300">Joined the <a href="https://vlgiitr.github.io/" target="_blank" rel="noopener" class="link">Vision and Language Group (VLG)</a> at IIT Roorkee as a core research member.</p>
+        <div class="flex flex-col md:flex-row gap-2 md:gap-8">
+          <span class="font-sans text-base text-zinc-400 dark:text-zinc-500 md:w-32 flex-shrink-0 pt-1 font-medium">Feb 2026</span>
+          <p class="font-serif text-xl xl:text-2xl text-zinc-700 dark:text-zinc-300 leading-relaxed">Joined the <a href="https://vlgiitr.github.io/" target="_blank" rel="noopener" class="link">Vision and Language Group (VLG)</a> at IIT Roorkee as a core research member.</p>
         </div>
       </div>
-      <a href="updates.html" class="inline-block mt-4 text-sm text-zinc-400 dark:text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors">
+
+      <a href="updates.html" class="inline-block mt-10 font-sans text-base text-zinc-400 dark:text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors">
         → full update log
       </a>
     </section>
 
     <!-- ===== SELECTED PUBLICATIONS ===== -->
-    <section class="reveal reveal-d3 mb-16">
-      <div class="flex items-baseline justify-between mb-6">
-        <h2 class="font-serif text-2xl font-bold text-zinc-900 dark:text-white">Selected Publications</h2>
-        <a href="research.html" class="text-sm text-zinc-400 dark:text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors">all →</a>
+    <section class="reveal d4 mb-24 w-full">
+      <div class="flex items-baseline justify-between mb-10 lg:w-[85%] xl:w-[75%]">
+        <h2 class="font-serif text-4xl xl:text-5xl font-bold text-zinc-900 dark:text-white">Publications</h2>
+        <a href="research.html" class="font-sans text-base text-zinc-400 dark:text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors">all publications →</a>
       </div>
-      <div class="space-y-6">
-        <!-- Paper 1 -->
-        <div class="pl-4 border-l-2 border-zinc-300 dark:border-zinc-700">
-          <p class="font-serif text-base font-semibold text-zinc-900 dark:text-zinc-100 leading-snug mb-1">
+
+      <div class="space-y-12 lg:w-[85%] xl:w-[75%]">
+        <div>
+          <p class="font-serif text-2xl xl:text-3xl font-semibold text-zinc-900 dark:text-zinc-100 leading-snug mb-2">
             CATPO: Critique-Augmented Tree Policy Optimization
           </p>
-          <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-1">
+          <p class="font-sans text-lg text-zinc-500 dark:text-zinc-400 mb-2">
             <strong class="text-zinc-700 dark:text-zinc-300">Ankur Dahiya</strong>, Umang Goyal, Ayush
           </p>
-          <p class="text-xs text-zinc-400 dark:text-zinc-500 mb-2 italic">Submitted to COLM 2026 · Under review</p>
-          <div class="flex gap-3 text-xs">
-            <a href="https://github.com/ankur777jinn" target="_blank" rel="noopener" class="text-blue-700 dark:text-blue-400 hover:underline">[code]</a>
-            <span class="text-zinc-400 dark:text-zinc-500">[paper — coming soon]</span>
-          </div>
+          <p class="font-sans text-base text-zinc-400 dark:text-zinc-500 italic mb-4">Submitted to COLM 2026</p>
+          <span class="font-sans text-base">
+            <a href="https://github.com/ankur777jinn" target="_blank" rel="noopener" class="link">[code]</a>
+            &nbsp;<span class="text-zinc-400 dark:text-zinc-500">[paper coming soon]</span>
+          </span>
         </div>
-        <!-- Paper 2 -->
-        <div class="pl-4 border-l-2 border-zinc-300 dark:border-zinc-700">
-          <p class="font-serif text-base font-semibold text-zinc-900 dark:text-zinc-100 leading-snug mb-1">
+
+        <div>
+          <p class="font-serif text-2xl xl:text-3xl font-semibold text-zinc-900 dark:text-zinc-100 leading-snug mb-2">
             Natural Selection of LLMs via Pruning
           </p>
-          <p class="text-sm text-zinc-500 dark:text-zinc-400 mb-1">
+          <p class="font-sans text-lg text-zinc-500 dark:text-zinc-400 mb-2">
             Umang Goyal, <strong class="text-zinc-700 dark:text-zinc-300">Ankur Dahiya</strong>, Ayush
           </p>
-          <p class="text-xs text-zinc-400 dark:text-zinc-500 mb-2 italic">AAAI 2026 · Student Abstract Track</p>
-          <div class="flex gap-3 text-xs">
-            <a href="https://github.com/ankur777jinn" target="_blank" rel="noopener" class="text-blue-700 dark:text-blue-400 hover:underline">[code]</a>
-            <span class="text-zinc-400 dark:text-zinc-500">[paper — coming soon]</span>
-          </div>
+          <p class="font-sans text-base text-zinc-400 dark:text-zinc-500 italic mb-4">AAAI 2026 · Student Abstract Track</p>
+          <span class="font-sans text-base">
+            <a href="https://github.com/ankur777jinn" target="_blank" rel="noopener" class="link">[code]</a>
+            &nbsp;<span class="text-zinc-400 dark:text-zinc-500">[paper coming soon]</span>
+          </span>
         </div>
       </div>
     </section>
 
     <!-- ===== EDUCATION ===== -->
-    <section class="reveal reveal-d4 mb-16">
-      <h2 class="font-serif text-2xl font-bold text-zinc-900 dark:text-white mb-6">Education</h2>
-      <div class="pl-4 border-l-2 border-zinc-300 dark:border-zinc-700">
-        <p class="font-serif text-base font-semibold text-zinc-900 dark:text-zinc-100 mb-0.5">Indian Institute of Technology, Roorkee</p>
-        <p class="text-sm text-zinc-600 dark:text-zinc-400">B.Tech in Data Science &amp; Artificial Intelligence</p>
-        <p class="text-xs text-zinc-400 dark:text-zinc-500 font-mono mt-1">2026 — present</p>
+    <section class="reveal d4 mb-24 w-full">
+      <h2 class="font-serif text-4xl xl:text-5xl font-bold text-zinc-900 dark:text-white mb-10">Education</h2>
+      <div>
+        <p class="font-serif text-2xl xl:text-3xl font-semibold text-zinc-900 dark:text-zinc-100 mb-1">Indian Institute of Technology, Roorkee</p>
+        <p class="font-serif text-xl xl:text-2xl text-zinc-600 dark:text-zinc-400">B.Tech in Data Science &amp; Artificial Intelligence</p>
+        <p class="font-sans text-base text-zinc-400 dark:text-zinc-500 mt-2">2026 — present</p>
       </div>
     </section>
 
     <!-- ===== CONTACT ===== -->
-    <section class="reveal reveal-d5 mb-8">
-      <h2 class="font-serif text-2xl font-bold text-zinc-900 dark:text-white mb-4">Get in Touch</h2>
-      <p class="font-serif text-[1.05rem] text-zinc-600 dark:text-zinc-400 leading-relaxed">
-        I'm always happy to chat about research ideas, potential collaborations, or just interesting problems. 
-        Drop me an email at <a href="mailto:adahiya@ds.iitr.ac.in" class="link">adahiya@ds.iitr.ac.in</a>, 
-        or find me on <a href="https://x.com/" target="_blank" rel="noopener" class="link">Twitter</a>.
+    <section class="reveal d5 w-full">
+      <h2 class="font-serif text-4xl xl:text-5xl font-bold text-zinc-900 dark:text-white mb-8">Get in Touch</h2>
+      <p class="font-serif text-2xl xl:text-3xl text-zinc-600 dark:text-zinc-400 leading-relaxed lg:w-[85%] xl:w-[75%]">
+        Always happy to talk about research, interesting problems, or potential collaborations. 
+        Email me at <a href="mailto:adahiya@ds.iitr.ac.in" class="link">adahiya@ds.iitr.ac.in</a>, 
+        or reach out on <a href="https://x.com/" target="_blank" rel="noopener" class="link">Twitter</a>.
       </p>
     </section>
 
   </main>
 
   <!-- Footer -->
-  <footer class="max-w-3xl mx-auto px-6 py-8 border-t border-zinc-200 dark:border-zinc-800">
-    <p class="text-xs text-zinc-400 dark:text-zinc-600">
-      &copy; 2026 Ankur Dahiya · Plain HTML, no frameworks
+  <footer class="w-full px-6 md:px-12 lg:px-24 xl:px-32 2xl:px-48 py-10 border-t border-zinc-200/60 dark:border-zinc-800/40">
+    <p class="text-base text-zinc-400 dark:text-zinc-600 font-sans">
+      &copy; 2026 Ankur Dahiya
     </p>
   </footer>
 
-  <!-- Theme toggle script -->
   <script>
+    // Theme toggle
     (function() {
       var t = document.getElementById('theme-toggle'),
           s = document.getElementById('sun-icon'),
@@ -246,6 +252,18 @@
       }
       set(localStorage.getItem('theme') === 'dark');
       t.onclick = function() { set(!h.classList.contains('dark')); };
+    })();
+
+    // Photo slideshow — gentle crossfade
+    (function() {
+      var imgs = document.querySelectorAll('.slideshow img');
+      if (imgs.length < 2) return;
+      var current = 0;
+      setInterval(function() {
+        imgs[current].classList.remove('active');
+        current = (current + 1) % imgs.length;
+        imgs[current].classList.add('active');
+      }, 4000);
     })();
   </script>
 </body>
